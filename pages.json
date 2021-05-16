@@ -278,6 +278,56 @@
 				"navigationBarTitleText":"发票"
 			}
         }
+		,{
+		    "path" : "pages/my-house/index",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "我的房屋",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/my-house/lodge",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "出租房屋",
+		        "enablePullDownRefresh": false,
+				"app-plus":{
+					"scrollIndicator":"none",
+					"titleNView":{
+						"buttons":[
+							{
+								"type":"none",
+								 "color":"#222",								 
+								 "colorPressed":"#BBBBBB",
+								 "float":"right",
+								 "fontSize":"17px",
+								 "text":"提交"
+							}
+						]
+					}
+				}
+		    }
+		}
+		,{
+		    "path" : "pages/my-house/houseDetail",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "房屋详情",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/my-house/face",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "人脸采集",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/scan/scan",
             "style" :                                                                                    

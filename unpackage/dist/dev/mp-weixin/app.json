@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/class/class",
+    "pages/my/my",
+    "pages/search/search",
+    "pages/list/list",
+    "pages/search-list/search-list",
+    "pages/new-list/new-list",
+    "pages/detail/detail",
+    "pages/user-set/user-set",
+    "pages/user-path-list/user-path-list",
+    "pages/user-path-edit/user-path-edit",
+    "pages/logistics-detail/logistics-detail",
+    "pages/msg-list/msg-list",
+    "pages/user-userinfo/user-userinfo",
+    "pages/order/order",
+    "pages/order-confirm/order-confirm",
+    "pages/order-coupon/order-coupon",
+    "pages/order-invoice/order-invoice",
+    "pages/scan/scan",
+    "pages/register/register",
+    "pages/register-next/register-next"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#B5B5B5",
+    "selectedColor": "#DE5F0E",
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/index.png",
+        "selectedIconPath": "static/tabbar/indexSelected.png"
+      },
+      {
+        "pagePath": "pages/class/class",
+        "text": "服务",
+        "iconPath": "static/tabbar/服务.png",
+        "selectedIconPath": "static/tabbar/服务2.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/tabbar/my.png",
+        "selectedIconPath": "static/tabbar/mySelected.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "divider": "/components/common/divider",
+    "loading": "/components/common/loading",
+    "loading-plus": "/common/mixin/loading-plus"
+  }
+}

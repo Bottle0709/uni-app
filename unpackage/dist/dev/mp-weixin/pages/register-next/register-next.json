@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "上传头像",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "img-upload": "/components/linzq-imgUpload/linzq-imgUpload"
+  }
+}

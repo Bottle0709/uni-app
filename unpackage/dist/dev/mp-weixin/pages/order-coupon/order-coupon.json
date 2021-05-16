@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "no-thing": "/components/common/no-thing",
+    "coupon": "/components/order-coupon/coupon"
+  }
+}

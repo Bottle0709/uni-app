@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "服务",
+  "usingComponents": {
+    "swiper-image": "/components/index/swiper-image",
+    "index-nav": "/components/index/index-nav",
+    "three-adverts": "/components/index/three-adverts",
+    "card": "/components/common/card",
+    "common-list": "/components/common/common-list",
+    "uni-nav-bar": "/components/uni-common/uni-nav-bar/uni-nav-bar"
+  }
+}

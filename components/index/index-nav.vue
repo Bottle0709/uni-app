@@ -18,6 +18,7 @@
 		},
 		methods:{
 			open(item){
+				console.log(item.name=='我的房屋');
 				if(item.name=='扫码充电'){
 					uni.navigateTo({
 						url: '../../pages/scan/scan'
@@ -25,6 +26,10 @@
 				}else if(item.name=='注册'){
 					uni.navigateTo({
 						url:'../../pages/register/register'
+					})
+				}else if(item.name=='我的房屋'){
+					uni.navigateTo({
+						url:'../../pages/my-house/index'
 					})
 				}else{
 					uni.navigateTo({

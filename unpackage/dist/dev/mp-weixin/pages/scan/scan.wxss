@@ -1,0 +1,21 @@
+
+.content {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+                flex-direction: column;
+        background-color: #C8C7CC;
+        width: 750rpx;
+        height: 100%;
+		vertical-align: bottom;
+		justify-items: center;
+}
+.a {
+		height: 100%;
+       
+		text-align: center;
+}
+

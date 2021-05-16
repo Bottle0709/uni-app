@@ -1,0 +1,11 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "列表页",
+  "usingComponents": {
+    "search-list": "/components/search-list/search-list",
+    "uni-drawer": "/components/uni-common/uni-drawer/uni-drawer",
+    "card": "/components/common/card",
+    "zcm-radio-group": "/components/common/zcm-radio-group",
+    "change-screen": "/components/search-list/change-screen"
+  }
+}
