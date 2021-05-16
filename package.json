@@ -1,0 +1,13 @@
+{
+    "id": "imagex-uploader",
+    "name": "图片上传插件（火山引擎-ImageX图片服务）",
+    "version": "1.1",
+    "description": "图片上传插件，支持上传图片到火山引擎-ImageX图片服务",
+    "keywords": [
+        "图片上传",
+        "火山引擎",
+        "ImageX",
+        "app",
+        "小程序"
+    ]
+}
