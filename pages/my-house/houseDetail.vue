@@ -53,7 +53,7 @@
 				height: 100%;
 				 .detailView{
 				    margin:30upx;
-				    background-color: #15ABFF;
+				    background-color: #cadfea;
 				    padding:30upx 20upx;
 				    border-radius: 10upx;
 				    display: flex;
@@ -94,7 +94,7 @@
 												   line-height: 60upx;
 												   text-align: center;
 												   border-radius: 50%;
-						   						   background-color: rgba(66, 192, 253, 0.8);
+						   						   background-color: rgba(196,225,239, 0.8);
 						   						   color: #fff;
 						   						   font-size: 20upx;
 						   } 
