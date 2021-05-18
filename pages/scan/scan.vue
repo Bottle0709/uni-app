@@ -1,17 +1,12 @@
 <template>
 	<view class="content">
-		<view class="a"></view>
-		<view class="a" style="display: flex;flex-direction: column;">
-			<view class="a"></view>
-			<view class="a">
-				<button style="margin-top:20upx;height: 100upx;width: 200upx;border-radius: 100upx;"
-				type="primary" @click="scanCode()">扫一扫</button>
-			</view>
-			<view class="a"></view>
+		<view class="cosao">
+			<button class="saosao" type="primary" @click="scanCode()">扫一扫</button>
 		</view>
-		<view class="a" >
-			<button style="margin-left:250upx;margin-bottom:20px;width: 250upx;border-radius: 100upx;position: absolute;bottom: 0upx;"
-			type="primary" @click="open()">输入序列号</button>
+		<view class="sa-bottom">
+			<button class="sa1" type="primary" @click="open()"><span class="m-icon so-s"></span>输入序列号</button>
+			<button class="sa1" type="primary" @click="openSd()"><span class="m-icon so-d"></span>手电筒</button>
+			<button class="sa1" type="primary" @click="goto('/pages/scan/record')"><span class="m-icon so-j"></span>充电记录</button>
 		</view>
 		
 	<uni-popup ref="popup" type="dialog">
@@ -53,6 +48,11 @@
 			//this.scanCode()
 		},
 		methods: {
+			goto(url) {
+			                uni.navigateTo({
+			                    url:url
+			                })
+			            },
 			open() {
 			      this.$refs.popup.open()
 			    },
@@ -65,7 +65,9 @@
 							     }
 							 });
 						},
-						
+		    openSd(){
+				
+			},
 			close(done){
 			            // TODO 做一些其他的事情，before-close 为true的情况下，手动执行 done 才会关闭对话框
 			          
@@ -86,19 +88,81 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
 .content {
         display: flex;
         flex-direction: column;
-        background-color: #C8C7CC;
+        background-color: rgba(200,199,204,0.3);
         width: 750upx;
         height: 100%;
 		vertical-align: bottom;
 		justify-items: center;
+		.sa-bottom{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			//height: 50px;
+			background-color: transparent;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		.sa1{
+			width: calc(100% /3);
+			height: 100%;
+			background-color: transparent;
+			display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+color: #de5f0e;
+font-size: 30upx;
+			&::after{
+				display: none;
+			}
+			.m-icon {
+				display: inline-block;
+				width: 50upx;
+				height: 50upx;
+				&.so-s{
+					background-image: url(../../static/images/so-s.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+				}
+				&.so-d{
+					background-image: url(../../static/images/so-d.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+				}
+				&.so-j{
+					background-image: url(../../static/images/so-j.png);
+					background-repeat: no-repeat;
+					background-size: contain;
+				}
+			}
+			
+		}
+	    }
+		.a {
+			height: 100%;
+		   
+			text-align: center;
+		}
+		.cosao{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+		}
+		.saosao{
+			width: 200upx;
+			color: #fff;
+			background-color:#de5f0e;
+			&::after{
+				border-color: #de5f0e;
+			}
+		}
     }
-    .a {
-		height: 100%;
-       
-		text-align: center;
-    }
+    
+	
 </style>

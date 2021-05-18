@@ -337,6 +337,33 @@
             }
             
         }
+		,{
+		    "path" : "pages/scan/record",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "充电记录",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/scan/recordDetail",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "充电详情",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/openDoor/openDoor",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "手机开门",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/register/register",
             "style" :                                                                                    

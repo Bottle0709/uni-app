@@ -19,6 +19,18 @@
 				</view>
 			</view>
 			<view class="from-list">
+				<view class="f-lable">期望租金</view>
+				<view class="f-view"> 
+					<input v-model="rent" class="f-input" type="number" placeholder-style="color: #8A8A8A" placeholder="请输入期望租金" />
+				</view>
+			</view>
+			<view class="from-list">
+				<view class="f-lable">押金</view>
+				<view class="f-view">
+					<input v-model="deposit" class="f-input" type="number" placeholder-style="color: #8A8A8A" placeholder="请输入押金" />
+				</view>
+			</view>
+			<view class="from-list">
 				<view class="f-lable">出租开始时间</view>
 				<view class="f-view">
 					<picker-input
@@ -42,18 +54,6 @@
 					:isTime="true"
 					@pickerInputChange="endTimeChange"
 					></picker-input>
-				</view>
-			</view>
-			<view class="from-list">
-				<view class="f-lable">期望租金</view>
-				<view class="f-view"> 
-					<input v-model="rent" class="f-input" type="number" placeholder-style="color: #8A8A8A" placeholder="请输入期望租金" />
-				</view>
-			</view>
-			<view class="from-list">
-				<view class="f-lable">押金</view>
-				<view class="f-view">
-					<input v-model="deposit" class="f-input" type="number" placeholder-style="color: #8A8A8A" placeholder="请输入押金" />
 				</view>
 			</view>
 			<view class="from-list f-100">

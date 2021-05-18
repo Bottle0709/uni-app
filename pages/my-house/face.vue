@@ -56,9 +56,9 @@
 					}
 					.face-btn{
 						background-color: #fff;
-						border:1px solid #52ABD5;
+						border:1px solid #de5f0e;
 						border-radius: 300upx;
-						color:#52ABD5;
+						color:#de5f0e;
 						font-size: 30upx;
 					}
 				}
