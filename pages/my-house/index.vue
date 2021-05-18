@@ -57,6 +57,7 @@
 		.cont-list{
 			background-color: #fff;
 			margin-top:30upx;
+			height: 100%;
 			.un-list{
 				display: flex;
 				align-items: center;
@@ -84,11 +85,11 @@
 				  margin:0;
 				  background-color: #fff;
 				  font-size: 30upx;
-				  color:#696969;
+				  color:#de5f0e;
 				  margin-right:30upx;
 				  &:after{
 					  border-radius: 100upx;
-					  border:1px solid #646464;
+					  border:1px solid #de5f0e;
 				  }
 				  
 			  }

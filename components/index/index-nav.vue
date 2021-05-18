@@ -31,6 +31,10 @@
 					uni.navigateTo({
 						url:'../../pages/my-house/index'
 					})
+				}else if(item.name=='手机开门'){
+					uni.navigateTo({
+						url:'../../pages/openDoor/openDoor'
+					})	
 				}else{
 					uni.navigateTo({
 						url: '../../pages/new-list/new-list'
