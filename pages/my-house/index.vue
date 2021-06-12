@@ -49,15 +49,13 @@
 .content {
         display: flex;
         flex-direction: column;
-        background-color: #F9F9F9;
+        background-color:#f8f9fa;
         width: 750upx;
         height: 100%;
 		vertical-align: bottom;
 		justify-items: center;
 		.cont-list{
 			background-color: #fff;
-			margin-top:30upx;
-			height: 100%;
 			.un-list{
 				display: flex;
 				align-items: center;
