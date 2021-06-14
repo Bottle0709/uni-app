@@ -24,7 +24,7 @@
 		
 		<!-- 菜单 -->
 		<uni-list-item showExtraIcon otherIconStyle="color:#FDBF2E;"
-		otherIcon="icon-VIP" title="停车缴费"></uni-list-item>
+		otherIcon="icon-VIP" title="停车缴费" @click="goto('/pages/vehicle/payment')"></uni-list-item>
 		<uni-list-item showExtraIcon otherIconStyle="color:#FCBE2D;"
 		otherIcon="icon-huangguan" title="报修记录"></uni-list-item>
 		<uni-list-item showExtraIcon otherIconStyle="color:#FA6C5E;"
@@ -54,11 +54,16 @@
 				nav:[
 					{ name:"我的房屋",icon:"icon-wallet_icon",url:"order" },
 					{ name:"我的账单",icon:"icon-daishouhuo",url:"order" },
-					{ name:"我的车位",icon:"icon-pinglun1",url:"order" }
+					{ name:"我的车辆",icon:"icon-pinglun1",url:"order" }
 				]
 			}
 		},
 		methods: {
+			goto(url) {
+				uni.navigateTo({
+					url: url
+				});
+			},
 			navigate(item){
 				/* iF (!str) return;
 				uni.navigateTo({
@@ -69,7 +74,7 @@
 						url: '../../pages/my-house/index'
 					});
 				}
-				else if(item.name=='我的车位'){
+				else if(item.name=='我的车辆'){
 					uni.navigateTo({
 							url:'../../pages/vehicle/mycart'
 					})

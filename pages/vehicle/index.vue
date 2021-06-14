@@ -1,6 +1,6 @@
 <template>
 	<view class="vehicle">
-		<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem" styleType="text" activeColor="#de5f0e"></uni-segmented-control>
+		<uni-segmented-control class="natop" :current="current" :values="items" @clickItem="onClickItem" styleType="text" activeColor="#de5f0e"></uni-segmented-control>
 		<view class="content">
 			<view class="cli" v-show="current === 0"><mycart></mycart></view>
 			<view class="cli" v-show="current === 1"><info></info></view>
@@ -37,9 +37,14 @@ export default {
 	.vehicle{
 		width: 100%;
 		height: 100%;
-		background: #F8F9FA;
+		background: #f3f3f3;
+		.natop{
+			padding-top:20upx;
+			height: 92upx;
+		}
 		.content{
-			/* height: calc(100% - 36upx); */
+			height: calc(100% - 92upx);
+			overflow: hidden;
 			.cli{
 				height: 100%;
 			}

@@ -2,7 +2,7 @@ import $store from '@/store/index.js'
 export default {
 	// 全局配置
 	common:{
-		baseUrl:"http://81.71.126.130:8080/jeecg-boot/",
+		baseUrl:"http://81.71.126.130:8080/jeecg-boot/api/app",
 		header:{
 			'Content-Type':'application/json;charset=UTF-8',
 			'Content-Type':'application/x-www-form-urlencoded'
@@ -19,12 +19,12 @@ export default {
 		options.data = options.data || this.common.data
 		options.method = options.method || this.common.method
 		options.dataType = options.dataType || this.common.dataType
-		
+		//console.log(options)
 		// token
 		if (options.token) {
-			options.header.token = $store.state.user.token
+			options.header["X-Access-Token"] = $store.state.user.token
 			// 二次验证
-			if (options.checkToken && !options.header.token) {
+			if (options.checkToken && !options.header["X-Access-Token"]) {
 				uni.showToast({
 					title: '请先登录',
 					icon: 'none'
@@ -82,6 +82,7 @@ export default {
 		options.url = url
 		options.data = data
 		options.method = 'POST'
+		//console.log(options)
 		return this.request(options)
 	},
 	// delete请求
@@ -91,4 +92,5 @@ export default {
 		options.method = 'DELETE'
 		return this.request(options)
 	},
+	
 }

@@ -155,12 +155,13 @@
 						aryItem.data.indexNav = [
 							{ src:"../../static/indexnav/f.png", name:"我的房屋" },
 							{ src:"../../static/indexnav/zd.png", name:"我的账单" },
-							{ src:"../../static/indexnav/cart.png", name:"车辆管理" },
-							/* { src:"../../static/indexnav/dc.png", name:"我的车位" }, */
+							{ src:"../../static/indexnav/cart.png", name:"停车场" },
+							{ src:"../../static/indexnav/dc.png", name:"我的车辆" },
+							{ src:"../../static/indexnav/j.png", name:"停车缴费" },
 							{ src:"../../static/indexnav/rl.png", name:"人脸采集" },
 							{ src:"../../static/indexnav/yq.png", name:"仿客邀请" },
 							{ src:"../../static/indexnav/b.png", name:"在线报修" },
-							/* { src:"../../static/indexnav/j.png", name:"停车缴费" }, */
+							
 							{ src:"../../static/indexnav/l.png", name:"联系物业" },
 							{ src:"../../static/indexnav/ts.png", name:"投诉建议" },
 							{ src:"../../static/indexnav/sw.png", name:"失物招领" },
@@ -171,7 +172,7 @@
 						];
 						aryItem.data.indexNav2 = [
 							{ src:"../../static/indexnav/1.png", name:"人脸识别" },
-							{ src:"../../static/indexnav/2.gif", name:"我的车位" },
+							{ src:"../../static/indexnav/2.gif", name:"我的车辆" },
 							{ src:"../../static/indexnav/3.gif", name:"停车缴费" },
 							{ src:"../../static/indexnav/4.gif", name:"扫码充电" },
 							{ src:"../../static/indexnav/5.gif", name:"联系物业" },

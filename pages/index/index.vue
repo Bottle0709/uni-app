@@ -192,11 +192,11 @@
 						];
 						aryItem.data.indexNav2 = [
 							{ src:"../../static/indexnav/rl.png", name:"人脸识别" },
-							{ src:"../../static/indexnav/cart.png", name:"车辆管理" },
-							{ src:"../../static/indexnav/eng.png", name:"工程管理" },
+							{ src:"../../static/indexnav/cart.png", name:"停车场" },
+							{ src:"../../static/indexnav/dc.png", name:"我的车辆" },
+							{ src:"../../static/indexnav/j.png", name:"停车缴费" },
+							{ src:"../../static/indexnav/eng.png", name:"服务工单" },
 							{ src:"../../static/indexnav/cartd.png", name:"车辆充电" },
-							/* { src:"../../static/indexnav/dc.png", name:"我的车位" },
-							{ src:"../../static/indexnav/j.png", name:"停车缴费" }, */
 							{ src:"../../static/indexnav/c.png", name:"扫码充电" },
 							{ src:"../../static/indexnav/l.png", name:"联系物业" },
 							{ src:"../../static/indexnav/b.png", name:"在线报修" },

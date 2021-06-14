@@ -374,10 +374,10 @@
 		    
 		}
 		,{
-		    "path" : "pages/vehicle/index",
+		    "path" : "pages/vehicle/info",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "车辆管理",
+		        "navigationBarTitleText": "停车场",
 		        "enablePullDownRefresh": false
 		    }
 		    
@@ -386,8 +386,32 @@
 		    "path" : "pages/vehicle/mycart",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "我的车位",
+		        "navigationBarTitleText": "我的车辆",
 		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/vehicle/payment",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "车辆缴费",
+		       "enablePullDownRefresh": false,
+		       "app-plus":{
+		       	"scrollIndicator":"none",
+		       	"titleNView":{
+		       		"buttons":[
+		       			{
+		       				"type":"default",
+		       				 "color":"#de5f0e",								 
+		       				 "colorPressed":"#de5f0e",
+		       				 "float":"right",
+		       				 "fontSize":"15px",
+		       				 "text":"提交"
+		       			}
+		       		]
+		       	}
+		       }
 		    }
 		    
 		}
@@ -395,7 +419,7 @@
 		    "path" : "pages/engine/engine",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "工程管理",
+		        "navigationBarTitleText": "服务工单",
 		        "enablePullDownRefresh": false
 		    }
 		    
@@ -439,7 +463,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F9FA",
+		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
 	},
 	"tabBar" : {

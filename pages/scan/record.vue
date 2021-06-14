@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view class="main-bg-color content">
 		<view class="cont-list">
 			<view class="tab-nav">
 				<view class="tab" :class="{ active: current == item.id }" v-for="(item, idx) in tabName" :key="idx" @click="change(item.id)">{{ item.name }}</view>
@@ -104,14 +104,14 @@ export default {
 .content {
 	display: flex;
 	flex-direction: column;
-	background-color: #f9f9f9;
 	width: 750upx;
 	height: 100%;
 	vertical-align: bottom;
 	justify-items: center;
+	overflow: hidden;
 	.cont-list {
-		background-color: #fff;
-		margin-top: 10upx;
+		background-color: transparent;
+		padding-top: 10upx;
 		height: 100%;
 		.tab-nav {
 			display: flex;
@@ -168,6 +168,8 @@ export default {
 		}
 		.tcont {
 			width: 100%;
+			height: 100%;
+			overflow-y: auto;
 			.recodlist {
 				.head {
 					display: flex;

@@ -33,11 +33,19 @@ export default {
 				uni.navigateTo({
 					url: '../../pages/openDoor/openDoor'
 				});
-			} else if (item.name == '车辆管理') {
+			} else if (item.name == '停车场') {
 				uni.navigateTo({
-					url: '../../pages/vehicle/index'
+					url: '../../pages/vehicle/info'
 				});
-			} else if (item.name == '工程管理') {
+			}else if (item.name == '我的车辆') {
+				uni.navigateTo({
+					url: '../../pages/vehicle/mycart'
+				});
+			}else if (item.name == '停车缴费') {
+				uni.navigateTo({
+					url: '../../pages/vehicle/payment'
+				});
+			}else if (item.name == '服务工单') {
 			 	uni.navigateTo({
 			 		url: '../../pages/engine/engine'
 			 	});

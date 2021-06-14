@@ -1,5 +1,5 @@
 <template>
-	<view class="payment">
+	<view class="main-bg-color payment">
 		<uni-card>
 			<view class="info-list">
 				<view class="l-la">缴费方式</view>
@@ -95,6 +95,7 @@ export default {
 .payment {
 	width: 100%;
 	height: 100%;
+	padding-top: 24upx;
 	.info-list {
 		display: flex;
 		align-items: center;
