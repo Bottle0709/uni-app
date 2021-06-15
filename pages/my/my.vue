@@ -4,7 +4,7 @@
     <my-head></my-head>
     <!-- 我的订单 -->
     <view class="animated fadeIn faster">
-      <card>
+      <!-- <card> -->
         <view class="row">
           <block v-for="(item, index) in nav" :key="index">
             <view
@@ -21,7 +21,7 @@
             </view>
           </block>
         </view>
-      </card>
+     <!-- </card> -->
     </view>
     <divider></divider>
 
@@ -67,12 +67,12 @@
 </template>
 
 <script>
-import card from "@/components/common/card.vue";
+/* import card from "@/components/common/card.vue"; */
 import uniListItem from "@/components/uni-common/uni-list-item/uni-list-item.vue";
 import myHead from "@/components/my/my-head.vue";
 export default {
   components: {
-    card,
+    /* card, */
     uniListItem,
     myHead,
   },

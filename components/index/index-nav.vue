@@ -49,6 +49,10 @@ export default {
         uni.navigateTo({
           url: "../../pages/engine/engine",
         });
+      } else if (item.name == "视频对讲") {
+        uni.navigateTo({
+          url: "../../pages/vIntercom/index",
+        });
       } else if (item.name == "车辆充电") {
         uni.navigateTo({
           url: "../../pages/scan/record",

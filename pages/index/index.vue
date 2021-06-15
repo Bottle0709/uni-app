@@ -201,6 +201,7 @@ export default {
             { src: "../../static/indexnav/dc.png", name: "我的车辆" },
             { src: "../../static/indexnav/j.png", name: "停车缴费" },
             { src: "../../static/indexnav/eng.png", name: "服务工单" },
+			{ src: "../../static/indexnav/video.png", name: "视频对讲" },
             { src: "../../static/indexnav/cartd.png", name: "车辆充电" },
             { src: "../../static/indexnav/c.png", name: "扫码充电" },
             { src: "../../static/indexnav/l.png", name: "联系物业" },

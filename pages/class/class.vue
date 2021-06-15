@@ -24,16 +24,12 @@
 import swiperImage from "@/components/index/swiper-image.vue";
 import indexNav from "@/components/index/index-nav.vue";
 import threeAdverts from "@/components/index/three-adverts.vue";
-import card from "@/components/common/card.vue";
-import commonList from "@/components/common/common-list.vue";
 import uniNavBar from "@/components/uni-common/uni-nav-bar/uni-nav-bar.vue";
 export default {
   components: {
     swiperImage,
     indexNav,
     threeAdverts,
-    card,
-    commonList,
     uniNavBar,
   },
   data() {
@@ -143,7 +139,7 @@ export default {
     },
     randomfn() {
       let ary = [];
-      for (let i = 0, length = this.tabBars.length; i <script length; i++) {
+      for (let i = 0, length = this.tabBars.length; i < length; i++) {
         let aryItem = {
           refreshing: false,
           refreshText: "下拉可以刷新",
