@@ -19,9 +19,9 @@
 						</view>
 						<view class="info-list">
 							<view class="l-la">空闲车位数量</view>
-							<view class="l-if">{{ item.kxCount }}俩</view>
+							<view class="l-if">{{ item.kxcount }} 俩</view>
 						</view>
-						<view class="info-list info-btn last"><button class="inbtn" type="default" @click="openLocation(item.lng,item.lat)">导航</button></view>
+						<view class="info-list info-btn last"><button class="inbtn" type="default" @click="openLocation(item.lng, item.lat)">导航</button></view>
 					</uni-card>
 				</view>
 			</view>
@@ -48,10 +48,15 @@ export default {
 		}
 	},
 	methods: {
-		openLocation(longitude,latitude) {
+		openLocation(longitude, latitude) {
+			const lat = 116.39747;
+			const long = 39.9085;
 			uni.openLocation({
-				longitude: longitude,
-				latitude: latitude
+				latitude: lat,
+				longitude: long,
+				success: function() {
+					console.log('success');
+				}
 			});
 		},
 		imageError: function(e) {
@@ -68,9 +73,14 @@ export default {
 			//这里的pageNo和pageSize会自动计算好，直接传给服务器即可
 			//这里的请求只是演示，请替换成自己的项目的网络请求，请在网络请求回调中
 			//通过this.$refs.paging.complete(请求回来的数组);将请求结果传给z-paging
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
 			this.$H.get('/park/queryByCommunityid', { pageNo: pageNo, pageSize: pageSize }, { token: true }).then(res => {
 				console.log(res);
-				let data = res.records;
+				uni.hideLoading();
+				let data = res.result.records;
 				this.$refs.paging.complete(data);
 			});
 		}
@@ -82,7 +92,7 @@ export default {
 .carinfo {
 	width: 100%;
 	height: 100%;
-	overflow-y: auto;
+	//overflow-y: auto;
 	.carlist {
 		/deep/.uni-card__header {
 			padding: 10upx 24upx;

@@ -13,7 +13,7 @@
 			<uni-card>
 				<view class="list">
 					<view class="ls lss">
-						<view class="ls11" :class="'st_' + status">已完成</view>
+						<view class="ls11" :class="'st_' + info.status">{{ statusName }}</view>
 						<view class="ls2">状态</view>
 					</view>
 					<view class="ls">
@@ -22,8 +22,8 @@
 					</view>
 				</view>
 			</uni-card>
-			<uni-card>
-				<view class="list-detail" v-if="info.status == '1'">
+			<uni-card v-if="info.status == '1' || info.status == '6' || info.status == '7'">
+				<view class="list-detail">
 					<view class="lab-list">
 						<view class="label">充电桩编号</view>
 						<view class="label2">{{ info.chargingpileNo }}</view>
@@ -46,8 +46,8 @@
 					</view>
 				</view>
 			</uni-card>
-			<view class="detail" v-if="info.status == '3'"><button class="sa sa1" type="primary">预约</button></view>
-			<view class="detail" v-if="info.status == '3'"><button class="sa sa2" type="primary">缴费</button></view>
+			<!-- <view class="detail" v-if="info.status == '3'"><button class="sa sa1" type="primary">预约</button></view> -->
+			<view class="detail" v-if="info.status == '6'"><button class="sa sa2" type="primary">缴费</button></view>
 		</view>
 	</view>
 </template>
@@ -59,23 +59,37 @@ export default {
 	data() {
 		return {
 			Id: '',
+			statuslist: [
+				{ id: '1', name: '充电中' },
+				{ id: '2', name: '故障' },
+				{ id: '3', name: '空闲' },
+				{ id: '4', name: '插枪空闲' },
+				{ id: '5', name: '离线' },
+				{ id: '6', name: '待缴费' },
+				{ id: '7', name: '已完成' }
+			],
 			info: {}
 		};
 	},
 	computed: {
 		token() {
 			return this.$store.state.user.token;
+		},
+		statusName() {
+			let status = '';
+			let index = this.statuslist.findIndex(a => a.id == this.info.status);
+			if (index !== -1) {
+				status = this.statuslist[index].name;
+			}
+			return status;
 		}
 	},
 	onLoad: function(option) {
 		console.log(option.id); //打印出上页面传递的参数
-		this.Id = option.id;
-	},
-	created() {
-		this.init();
+		this.init(option.id);
 	},
 	methods: {
-		init() {
+		init(id) {
 			if (!this.token) {
 				uni.showToast({
 					title: '请先登录',
@@ -83,9 +97,21 @@ export default {
 				});
 				return;
 			}
-			this.$H.get('cdz/queryByCommunityid?chargingpileno=' + this.Id, {}, { token: true }).then(res => {
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
+			this.$H.get('/cdz/queryByCommunityid?chargingpileno=' + id, {}, { token: true }).then(res => {
 				//console.log(res);
-				this.info = res;
+				uni.hideLoading();
+				if (res.code == 200) {
+					this.info = res.result;
+				} else {
+					uni.showToast({
+						title: res.message,
+						icon: 'none'
+					});
+				}
 			});
 		}
 	}

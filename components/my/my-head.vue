@@ -12,7 +12,7 @@
 			class="rounded-circle border-white ml-5"
 			style="width: 145upx;height: 145upx;border: 5upx solid;"></image>
 			<!-- 昵称 -->
-			<view class="text-light font-md ml-2">测试昵称</view>
+			<view class="text-light font-md ml-2">{{!token?"未登录":"测试昵称"}}</view>
 			
 		</view>
 	</view>
@@ -20,6 +20,11 @@
 
 <script>
 	export default {
+		computed: {
+			token() {
+				return this.$store.state.user.token;
+			}
+		},
 		methods: {
 			openMsgList() {
 				uni.navigateTo({

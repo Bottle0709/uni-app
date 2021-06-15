@@ -1,6 +1,6 @@
 <template>
 	<view class="main-bg-color engine">
-		<no-thing v-if="!info.id || !token" msg="暂无数据"></no-thing>
+		<no-thing v-if="!info || !token" msg="暂无数据"></no-thing>
 		<view v-else>
 			<uni-card class="engte">
 				<view class="info-list">
@@ -30,12 +30,7 @@ export default {
 	components: { noThing },
 	data() {
 		return {
-			info: {
-				id: '撒旦发射点',
-				statusDesc: '抵挡但',
-				serviceProject: '抵挡但',
-				remark: '抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但抵挡但'
-			}
+			info: null
 		};
 	},
 	created() {
@@ -55,15 +50,23 @@ export default {
 				});
 				return;
 			}
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
 			this.$H.get('/work/list', {}, { token: true }).then(res => {
-				//console.log(res);
-				this.info = res;
-			}).catch(err=>{
-				uni.showToast({
-					title: err,
-					icon: 'none'
-				});
-			});;
+				console.log(res);
+				uni.hideLoading();
+				if(res.code == 200){
+					this.info = res.result[0];
+				}else{
+					uni.showToast({
+						title: res.message,
+						icon: 'none'
+					});
+				}
+				
+			})
 		}
 	}
 };

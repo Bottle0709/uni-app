@@ -1,6 +1,6 @@
 <template>
 	<view class="main-bg-color mycart">
-		<no-thing v-if="!cartInfo.plateNumber || !token" msg="暂无数据"></no-thing>
+		<no-thing v-if="!cartInfo || !token" msg="暂无数据"></no-thing>
 		<uni-card v-else>
 			<view class="info-list">
 				<view class="l-la">车牌号</view>
@@ -24,7 +24,7 @@ export default {
 	components: { noThing },
 	data() {
 		return {
-			cartInfo: {}
+			cartInfo: null
 		};
 	},
 	created() {
@@ -44,15 +44,22 @@ export default {
 				});
 				return;
 			}
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
 			this.$H.get('/park/queryByVehicleId', {}, { token: true }).then(res => {
-				//console.log(res);
-				this.cartInfo = res;
-			}).catch(err=>{
-				uni.showToast({
-					title: err,
-					icon: 'none'
-				});
-			});;
+				console.log(res);
+				uni.hideLoading();
+				if(res.code == 200){
+					this.cartInfo = res.result;
+				}else{
+					uni.showToast({
+						title: res.message,
+						icon: 'none'
+					});
+				}
+			})
 		}
 	}
 };

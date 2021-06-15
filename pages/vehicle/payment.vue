@@ -31,6 +31,7 @@
 
 <script>
 import noThing from '@/components/common/no-thing.vue';
+import qs from 'qs';
 export default {
 	props: {},
 	components: { noThing },
@@ -105,26 +106,34 @@ export default {
 				return false;
 			}
 			let data = {
-				type:this.payType,
-				totalAmount:this.totalAmount,
-			}
-			if(this.payType == "1"){
+				type: this.payType,
+				totalAmount: this.totalAmount
+			};
+			if (this.payType == '1') {
 				data = {
 					...data,
-					count:this.date
-				}
+					count: this.date
+				};
 			}
 			console.log(data);
+			uni.showLoading({
+				title: '请求中...',
+				mask: true
+			});
 			this.$H.post('/park/add?' + qs.stringify(data)).then(res => {
-				uni.showToast({
-					title: '缴纳成功',
-					icon: 'none'
-				});
-			}).catch(err=>{
-				uni.showToast({
-					title: err,
-					icon: 'none'
-				});
+				uni.hideLoading();
+				if (res.code == 200) {
+					uni.showToast({
+						title: '缴纳成功',
+						icon: 'none'
+					});
+					this.totalAmount = '';
+				} else {
+					uni.showToast({
+						title: res.message,
+						icon: 'none'
+					});
+				}
 			});
 		},
 		radioChange: function(evt) {

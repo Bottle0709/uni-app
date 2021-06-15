@@ -1,18 +1,18 @@
 import $store from '@/store/index.js'
 export default {
 	// 全局配置
-	common:{
-		baseUrl:"http://81.71.126.130:8080/jeecg-boot/api/app",
-		header:{
-			'Content-Type':'application/json;charset=UTF-8',
-			'Content-Type':'application/x-www-form-urlencoded'
+	common: {
+		baseUrl: "http://81.71.126.130:8080/jeecg-boot/api/app",
+		header: {
+			'Content-Type': 'application/json;charset=UTF-8',
+			'Content-Type': 'application/x-www-form-urlencoded'
 		},
-		data:{},
-		method:'GET',
-		dataType:'json'
+		data: {},
+		method: 'GET',
+		dataType: 'json'
 	},
 	// 请求 返回promise
-	request(options = {}){
+	request(options = {}) {
 		// 组织参数
 		options.url = this.common.baseUrl + options.url
 		options.header = options.header || this.common.header
@@ -34,31 +34,33 @@ export default {
 				});
 			}
 		}
-		
+
 		// 请求
-		return new Promise((res,rej)=>{
+		return new Promise((res, rej) => {
 			// 请求之前... todo
 			// 请求中...
 			uni.request({
 				...options,
 				success: (result) => {
 					// 返回原始数据
-					if(options.native){
+					if (options.native) {
 						return res(result)
 					}
 					// 服务端失败
-					if(result.statusCode !== 200){
+					if (result.statusCode !== 200) {
 						if (options.toast !== false) {
 							uni.showToast({
 								title: result.data.msg || '服务端失败',
 								icon: 'none'
 							});
 						}
-						return rej(result.data) 
+						return rej(result.data)
 					}
+					//console.log(result)
 					// 成功
-					let data = result.data.result;
+					let data = result.data;
 					res(data)
+
 				},
 				fail: (error) => {
 					uni.showToast({
@@ -71,14 +73,14 @@ export default {
 		})
 	},
 	// get请求
-	get(url,data = {},options = {}){
+	get(url, data = {}, options = {}) {
 		options.url = url
 		options.data = data
 		options.method = 'GET'
 		return this.request(options)
 	},
 	// post请求
-	post(url,data = {},options = {}){
+	post(url, data = {}, options = {}) {
 		options.url = url
 		options.data = data
 		options.method = 'POST'
@@ -86,11 +88,11 @@ export default {
 		return this.request(options)
 	},
 	// delete请求
-	del(url,data = {},options = {}){
+	del(url, data = {}, options = {}) {
 		options.url = url
 		options.data = data
 		options.method = 'DELETE'
 		return this.request(options)
 	},
-	
+
 }

@@ -30,7 +30,7 @@
 				@blur="blur('code')"
 				:class="focusClass.code ? 'input-border-color' : ''"
 			/>
-			<view class="py-2 w-100 d-flex a-center j-center main-bg-color text-white rounded font-md mb-4" hover-class="main-bg-hover-color" @click="submit">登录</view>
+			<view class="py-2 w-100 d-flex a-center j-center main-bg-hover-color text-white rounded font-md mb-4" hover-class="main-bg-hover-color" @click="submit">登录</view>
 			<!-- <label class="checkbox d-flex a-center" @click="check = !check">
 				<checkbox :checked="check"/>
 				<text class="text-light-muted font">已阅读并同意XXXXX协议</text>
@@ -120,7 +120,7 @@ export default {
 			};
 			this.$H.post('/login/login?' + qs.stringify(data)).then(res => {
 				// 状态存储
-				this.login(res);
+				this.login(res.result);
 				uni.hideLoading();
 				uni.showToast({
 					title: '登录成功',

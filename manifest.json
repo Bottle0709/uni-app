@@ -81,6 +81,13 @@
     },
     "h5" : {
         "title" : "智慧社区",
-        "domain" : "99"
+        "domain" : "99",
+        "sdkConfigs" : {
+            "maps" : {
+                "qqmap" : {
+                    "key" : "KJNBZ-2A6C5-G5CI6-QIJ2H-GKV3Q-RJFIL"
+                }
+            }
+        }
     }
 }
