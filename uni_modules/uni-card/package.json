@@ -1,14 +1,14 @@
 {
-  "id": "uni-transition",
-  "displayName": "uni-transition 过渡动画",
-  "version": "1.1.1",
-  "description": "元素的简单过渡动画",
+  "id": "uni-card",
+  "displayName": "uni-card 卡片",
+  "version": "1.1.7",
+  "description": "Card 组件，提供常见的卡片样式。",
   "keywords": [
     "uni-ui",
     "uniui",
-    "动画",
-    "过渡",
-    "过渡动画"
+    "card",
+    "",
+    "卡片"
 ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {

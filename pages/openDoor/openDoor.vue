@@ -13,7 +13,7 @@
 		</view>
 		<view class="shou">
 			<img class="simg" src="@/static/images/shuo.png">
-			<button class="sbtn" type="primary" @click="open()">一键开锁</button>
+			<button class="sbtn" type="primary" @click="open()">一键开门</button>
 		</view>
 	</view>
 </template>
@@ -40,14 +40,14 @@
 	.openDoor{
 		display: flex;
 		flex-direction: column;
-		background-color: #f89150;
+		background-color: #f8f9fa;
 		width: 750upx;
 		height: 100%;
 		vertical-align: bottom;
 		justify-items: center;
 		.title{
 			font-size: 70upx;
-			color: #fff;
+			color: #222;
 			text-align: center;
 			margin: 30upx 0;
 		}
@@ -71,7 +71,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			padding-top: 100upx;
+			padding-top: 60upx;
 			.simg{
 				
 			}
@@ -81,8 +81,8 @@
 				height: 80upx;
 				line-height: 80upx;
 				border-radius: 50upx;
-				background-color: #fff;
-				color:#f89150 ;
+				background-color: #f89150;
+				color:#fff ;
 			}
 		}
 	}

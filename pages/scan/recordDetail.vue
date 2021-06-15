@@ -2,19 +2,19 @@
 	<view class="content">
 		<view class="cont-list del">
 			<view class="title">xxxxxxxxxxxx充电站</view>
-			<myCircle class="circle" :size="200" :percent="60">
+			<!-- <myCircle class="circle" :size="200" :percent="60">
 				<div slot="content" class="cc">
 				   <span class="c1">{{60}}</span>
 				   <span class="c2">充电量(度)</span>
 				</div>
-			</myCircle>
+			</myCircle> -->
 			<view class="list">
 				<view class="ls lss">
-					<view class="ls1">充电中</view>
+					<view class="ls11" :class="'st_'+status">已完成</view>
 					<view class="ls2">状态</view>
 				</view>
 				<view class="ls">
-					<view class="ls1">6666</view>
+					<view class="ls1">666</view>
 					<view class="ls2">充电金额(元)</view>
 				</view>
 			</view>
@@ -40,6 +40,8 @@
 					<view class="label2">2020-5-18</view>
 				</view>
 			</view>
+			<view class="detail" v-if="status == 0"><button class="sa sa1" type="primary">预约</button></view>
+			<view class="detail" v-if="status == 3"><button class="sa sa2" type="primary">缴费</button></view>
 		</view>
 	</view>
 </template>
@@ -50,6 +52,7 @@
 		components:{myCircle},
 		data() {
 			return {
+				status:4
 			}
 		},
 		onLoad() {
@@ -119,9 +122,21 @@
 							&.lss{
 								border-right: 1px solid #eee;
 							} 
-							.ls1{
+							.ls11{
 								font-size: 35upx;
 								color: #222;
+								&.st_1 {
+									color: #f37e34;
+								}
+								&.st_2 {
+									color: #de5f0e;
+								}
+								&.st_3 {
+									color: #ff0000;
+								}
+								&.st_4 {
+									color: #007aff;
+								}
 							} 
 							.ls2{
 								font-size: 30upx;
@@ -148,6 +163,38 @@
 							 }
 						 } 
 					 } 
+					 .detail {
+						 width: 100%;
+						 display: flex;
+						 align-items: center;
+						 justify-content: center;
+						 margin-top: 60upx;
+					 	.sa {
+					 		padding:0;
+					 		width: 100upx;
+					 		height: 60upx;
+					 		line-height: 60upx;
+					 		color: #222;
+					 		background: transparent;
+					 		border-color: transparent;
+					 		font-size: 28upx;
+					 		&.sa1 {
+					 			background: #f37e34;
+					 			color: #fff;
+					 			&:after{
+					 				border-color: #f37e34;
+					 			}
+					 		}
+					 		&.sa2 {
+					 			background: #ff0000;
+					 			color: #fff;
+					 			&:after{
+					 				border-color: #ff0000;
+					 			}
+					 			
+					 		}
+					 	}
+					 }
 				} 
 			}
     }

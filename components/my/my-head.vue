@@ -6,7 +6,7 @@
 		<!-- 背景图 -->
 		<image src="../../static/images/bg.jpg" style="height: 320upx;"></image>
 		<view class="d-flex a-center position-absolute left-0 right-0"
-		style="z-index: 100;bottom: 50upx;">
+		style="z-index: 100;bottom: 50upx;" @click="goto()">
 			<!-- 头像 -->
 			<image src="../../static/images/demo/demo6.jpg" 
 			class="rounded-circle border-white ml-5"
@@ -25,6 +25,12 @@
 				uni.navigateTo({
 					url: '../../pages/msg-list/msg-list'
 				});
+			},
+			goto(url) {
+				console.log("调整")
+			   uni.navigateTo({
+			      url:'../../pages/login/login'
+			   })
 			}
 		},
 	}

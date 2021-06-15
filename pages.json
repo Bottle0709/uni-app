@@ -24,7 +24,16 @@
             	 }
             }
         }
-		
+		,{
+		    "path" : "pages/login/login",
+		    "style" : {
+				"navigationBarTitleText":"登录",
+				"app-plus":{
+					"scrollIndicator":"none",
+					"titleNView":false
+				}
+			}
+		}
         ,{
             "path" : "pages/my/my",
             "style" : {
@@ -341,7 +350,7 @@
 		    "path" : "pages/scan/record",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "充电记录",
+		        "navigationBarTitleText": "车辆充电",
 		        "enablePullDownRefresh": false
 		    }
 		    
@@ -359,7 +368,43 @@
 		    "path" : "pages/openDoor/openDoor",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "手机开门",
+		        "navigationBarTitleText": "远程开门",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/vehicle/index",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "车辆管理",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/vehicle/mycart",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "我的车位",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/engine/engine",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "工程管理",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/vehicle/payment",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "停车缴费",
 		        "enablePullDownRefresh": false
 		    }
 		    
@@ -394,7 +439,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#FFFFFF",
+		"navigationBarBackgroundColor": "#F8F9FA",
 		"backgroundColor": "#FFFFFF"
 	},
 	"tabBar" : {

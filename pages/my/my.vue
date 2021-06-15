@@ -10,7 +10,7 @@
 					<block v-for="(item,index) in nav" :key="index">
 						<view class="span-6 d-flex flex-column j-center a-center py-3"
 						hover-class="bg-light-secondary"
-						@tap="navigate(item.url)">
+						@tap="navigate(item)">
 							<view class="icon iconfont line-h" :class="item.icon"
 							style="font-size: 40upx;"></view>
 							<view>{{item.name}}</view>
@@ -59,11 +59,25 @@
 			}
 		},
 		methods: {
-			navigate(str){
-				if (!str) return;
+			navigate(item){
+				/* iF (!str) return;
 				uni.navigateTo({
 					url: `/pages/${str}/${str}`,
-				});
+				}); */
+				if(item.name=='我的房屋'){
+					uni.navigateTo({
+						url: '../../pages/my-house/index'
+					});
+				}
+				else if(item.name=='我的车位'){
+					uni.navigateTo({
+							url:'../../pages/vehicle/mycart'
+					})
+				}else{
+					uni.navigateTo({
+						url: '../../pages/new-list/new-list'
+					});
+				}
 			}
 		}
 	}
