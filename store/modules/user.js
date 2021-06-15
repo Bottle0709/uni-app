@@ -15,15 +15,18 @@ export default {
 				userInfo = JSON.parse(userInfo)
 				
 				state.userInfo = userInfo
-				state.token = userInfo.token
+				//state.token = userInfo.token
+				state.token = userInfo
 				state.loginStatus = true
 			}
 		},
 		// 登录
 		login(state,userinfo){
+			console.log(userinfo)
 			state.userInfo = userinfo
 			state.loginStatus = true
-			state.token = userinfo.token
+			//state.token = userinfo.token
+			state.token = userinfo
 			// 持久化存储
 			uni.setStorageSync('userInfo',JSON.stringify(userinfo))
 		},

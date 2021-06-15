@@ -1446,3 +1446,14 @@ radio-group label, checkbox-group label{
     left: 0;
     transform: translateY(50%);
 }
+/* 表格 */
+.uni-card {
+	margin: 24upx 40upx !important;
+	border-radius: 30upx!important;
+}
+.uni-card::after {
+	border: none!important;
+}
+.uni-card__content--pd {
+	padding: 40upx 50upx!important;
+}
