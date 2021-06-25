@@ -2,19 +2,20 @@
 	"pages": [{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "智慧社区",
+				//"navigationBarTitleText": "智慧社区",
 				"app-plus": {
+					"titleNView": false, //禁用原生导航栏  
 					"scrollIndicator": "none", //隐藏滚动条
-					"bounce": "none", //关闭反弹效果
-					"titleNView": {}
+					"bounce": "none" //关闭反弹效果
 				}
 			}
 		},
 		{
 			"path": "pages/class/class",
 			"style": {
-				"navigationBarTitleText": "服务",
+				//"navigationBarTitleText": "服务",
 				"app-plus": {
+					"titleNView": false, //禁用原生导航栏  
 					"scrollIndicator": "none", //隐藏滚动条
 					"bounce": "none" //关闭反弹效果
 				}
@@ -155,9 +156,9 @@
 			"style": {
 				//"navigationBarTitleText": "视频对讲",
 				"enablePullDownRefresh": false,
-				"app-plus": {  
-				    "titleNView": false //禁用原生导航栏  
-				  }
+				"app-plus": {
+					"titleNView": false //禁用原生导航栏  
+				}
 			}
 		},
 		{
@@ -187,7 +188,10 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF"
+		"backgroundColor": "#FFFFFF",
+		"app-plus": {
+			"scrollIndicator": "none" //全局 在APP页面都不显示滚动条
+		}
 	},
 	"tabBar": {
 		"color": "#B5B5B5",

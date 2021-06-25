@@ -63,13 +63,13 @@ export default {
 			console.error('image发生error事件，携带值为' + e.detail.errMsg);
 		},
 		queryList(pageNo, pageSize) {
-			if (!this.token) {
+			/* if (!this.token) {
 				uni.showToast({
 					title: '请先登录',
 					icon: 'none'
 				});
 				return;
-			}
+			} */
 			//这里的pageNo和pageSize会自动计算好，直接传给服务器即可
 			//这里的请求只是演示，请替换成自己的项目的网络请求，请在网络请求回调中
 			//通过this.$refs.paging.complete(请求回来的数组);将请求结果传给z-paging
@@ -80,7 +80,7 @@ export default {
 			this.$H.get('/park/queryByCommunityid', { pageNo: pageNo, pageSize: pageSize }, { token: true }).then(res => {
 				console.log(res);
 				uni.hideLoading();
-				let data = res.result.records;
+				let data = res.result.records || [];
 				this.$refs.paging.complete(data);
 			});
 		}

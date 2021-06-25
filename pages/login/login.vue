@@ -76,9 +76,21 @@ export default {
 			}
 		};
 	},
+	computed: {
+		token() {
+			return this.$store.state.user.token;
+		}
+	},
 	methods: {
 		...mapMutations(['login']),
 		goBack() {
+			if (!this.token) {
+				uni.showToast({
+					title: '请先登录',
+					icon: 'none'
+				});
+				return;
+			}
 			uni.navigateBack({
 				delta: 1
 			});

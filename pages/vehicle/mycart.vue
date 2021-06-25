@@ -37,13 +37,13 @@ export default {
 	},
 	methods: {
 		init() {
-			if (!this.token) {
+			/* if (!this.token) {
 				uni.showToast({
 					title: '请先登录',
 					icon: 'none'
 				});
 				return;
-			}
+			} */
 			uni.showLoading({
 				title: '加载中...',
 				mask: true
@@ -52,7 +52,7 @@ export default {
 				console.log(res);
 				uni.hideLoading();
 				if(res.code == 200){
-					this.cartInfo = res.result;
+					this.cartInfo = res.result || null;
 				}else{
 					uni.showToast({
 						title: res.message,

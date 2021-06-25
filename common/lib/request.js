@@ -2,7 +2,7 @@ import $store from '@/store/index.js'
 export default {
 	// 全局配置
 	common: {
-		baseUrl: "http://81.71.126.130:8080/jeecg-boot/api/app",
+		baseUrl: "http://121.14.17.70:8080/jeecg-boot/api/app",
 		header: {
 			'Content-Type': 'application/json;charset=UTF-8',
 			'Content-Type': 'application/x-www-form-urlencoded'
@@ -23,8 +23,8 @@ export default {
 		// token
 		if (options.token) {
 			options.header["X-Access-Token"] = $store.state.user.token
-			// 二次验证
-			if (options.checkToken && !options.header["X-Access-Token"]) {
+			// 二次验证---options.checkToken && !options.header["X-Access-Token"]
+			if (!options.header["X-Access-Token"]) {
 				uni.showToast({
 					title: '请先登录',
 					icon: 'none'

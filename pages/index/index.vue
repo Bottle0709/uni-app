@@ -1,269 +1,185 @@
 <template>
-  <view class="uni-tab-bar">
-    <swiper
-      :current="tabIndex"
-      class="swiper-box"
-      :duration="300"
-      @change="changeTab"
-    >
-      <swiper-item v-for="(tab, index1) in newsitems" :key="index1">
-        <scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
-          <template v-if="tabBars[index1].template === 'index'">
-            <!-- 轮播图 -->
-            <swiper-image :banners="tab.data.banners"></swiper-image>
-
-            <!-- 图标分类 -->
-            <index-nav :indexnav="tab.data.indexNav"></index-nav>
-            <!-- 大图广告 -->
-            <template>
-              <!-- <divider></divider> -->
-              <!-- <image src="../../static/images/3.jpg" style="height:200upx;padding:0px; margin: 0px;"></image> -->
-            </template>
-            <divider></divider>
-            <!-- 图标分类 -->
-            <index-nav :indexnav="tab.data.indexNav2"></index-nav>
-
-            <!-- 大图广告 -->
-            <!-- <template >
-		               	<divider></divider>
-		               	<image :src="tab.data.list[1].data.src" style="height:200upx;padding:0px; margin: 0px;"></image>
-		               </template> -->
-          </template>
-
-          <template v-if="tabBars[index1].template === 'special'">
-            <!-- 轮播图 -->
-            <swiper-image :banners="tab.data.banners"></swiper-image>
-            <!-- 图标分类 -->
-            <index-nav :indexnav="tab.data.indexNav"></index-nav>
-
-            <block v-for="(v, i) in tab.data.list" :key="i">
-              <!-- 通用列表 -->
-              <template v-if="v.type === 'list'">
-                <view class="row" style="margin: 0 -5upx">
-                  <block v-for="(item, idx) in v.data" :key="idx">
-                    <common-list :item="item"></common-list>
-                  </block>
-                </view>
-              </template>
-            </block>
-          </template>
-        </scroll-view>
-      </swiper-item>
-    </swiper>
-  </view>
+	<view class="home">
+		<scroll-view class="scroll" scroll-y>
+			<!-- 轮播图 -->
+			<swiper-image :banners="banners"></swiper-image>
+			<view class="gg">
+				<view class="lab">
+					物业
+					<span class="lat">公告</span>
+				</view>
+				<view class="latitil">您好，欢迎来到智慧社区</view>
+			</view>
+			<divider></divider>
+			<view class="indexnav">
+				<view class="navtitle">主要功能</view>
+				<view class="navtcont">
+					<view class="nva" :class="'nva' + (idx + 1)" v-for="(item, idx) in indexNav1" key="idx" @tap="open(item)">
+						<view class="nval">{{ item.name }}</view>
+						<image style="width: 80upx; height: 80upx" :src="item.src"></image>
+					</view>
+				</view>
+			</view>
+			<divider></divider>
+			<!-- 图标分类 -->
+			<view class="indexnav">
+				<view class="navtitle">智慧社区</view>
+				<view class="navtcont"><index-nav :indexnav="indexNav2"></index-nav></view>
+			</view>
+		</scroll-view>
+	</view>
 </template>
 <script>
-import swiperImage from "@/components/index/swiper-image.vue";
-import indexNav from "@/components/index/index-nav.vue";
-import threeAdverts from "@/components/index/three-adverts.vue";
-import card from "@/components/common/card.vue";
-import commonList from "@/components/common/common-list.vue";
-import uniNavBar from "@/components/uni-common/uni-nav-bar/uni-nav-bar.vue";
+import swiperImage from '@/components/index/swiper-image.vue';
+import indexNav from '@/components/index/index-nav.vue';
+import divider from '@/components/common/divider.nvue';
 export default {
-  components: {
-    swiperImage,
-    indexNav,
-    threeAdverts,
-    card,
-    commonList,
-    uniNavBar,
-  },
-  data() {
-    return {
-      scrollLeft: 0,
-      isClickChange: false,
-      tabIndex: 0,
-      newsitems: [],
-      tabBars: [
-        {
-          name: "推荐",
-          id: "index",
-          template: "index",
-        },
-      ],
-    };
-  },
-  onNavigationBarSearchInputClicked() {
-    uni.navigateTo({
-      url: "../search/search",
-    });
-  },
-  onLoad() {
-    this.newsitems = this.randomfn();
-  },
-  methods: {
-    loadMore(e) {
-      setTimeout(() => {
-        this.addData(e);
-      }, 1200);
-    },
-    addData(e) {
-      if (this.newsitems[e].data.length > 30) {
-        this.newsitems[e].loadingText = "没有更多了";
-        return;
-      }
-      if (this.tabBars[e].template === "index") {
-        this.newsitems[e].data.list.push({
-          type: "list", // 通用列表
-          data: [],
-        });
-      }
-    },
-    async changeTab(e) {
-      let index = e.target.current;
-      if (this.newsitems[index].data.length === 0) {
-        this.addData(index);
-      }
-      if (this.isClickChange) {
-        this.tabIndex = index;
-        this.isClickChange = false;
-        return;
-      }
-      let tabBar = await this.getElSize("tab-bar"),
-        tabBarScrollLeft = tabBar.scrollLeft;
-      let width = 0;
-
-      for (let i = 0; i < index; i++) {
-        let result = await this.getElSize(this.tabBars[i].id);
-        width += result.width;
-      }
-      let winWidth = uni.getSystemInfoSync().windowWidth,
-        nowElement = await this.getElSize(this.tabBars[index].id),
-        nowWidth = nowElement.width;
-      if (width + nowWidth - tabBarScrollLeft > winWidth) {
-        this.scrollLeft = width + nowWidth - winWidth;
-      }
-      if (width < tabBarScrollLeft) {
-        this.scrollLeft = width;
-      }
-      this.isClickChange = false;
-      this.tabIndex = index; //一旦访问data就会出问题
-    },
-    getElSize(id) {
-      //得到元素的size
-      return new Promise((res, rej) => {
-        uni
-          .createSelectorQuery()
-          .select("#" + id)
-          .fields(
-            {
-              size: true,
-              scrollOffset: true,
-            },
-            (data) => {
-              res(data);
-            }
-          )
-          .exec();
-      });
-    },
-    async tapTab(e) {
-      //点击tab-bar
-      let tabIndex = e.target.dataset.current;
-      if (this.newsitems[tabIndex].data.length === 0) {
-        this.addData(tabIndex);
-      }
-      if (this.tabIndex === tabIndex) {
-        return false;
-      } else {
-        let tabBar = await this.getElSize("tab-bar"),
-          tabBarScrollLeft = tabBar.scrollLeft; //点击的时候记录并设置scrollLeft
-        this.scrollLeft = tabBarScrollLeft;
-        this.isClickChange = true;
-        this.tabIndex = tabIndex;
-      }
-    },
-    randomfn() {
-      let ary = [];
-      for (let i = 0, length = this.tabBars.length; i < length; i++) {
-        let aryItem = {
-          refreshing: false,
-          refreshText: "下拉可以刷新",
-          loadingText: "加载更多...",
-          data: {
-            list: [],
-          },
-        };
-        if (this.tabBars[i].template === "index") {
-          aryItem.data.banners = [
-            { src: "../../static/images/1.jpg" },
-            { src: "../../static/images/2.jpg" },
-          ];
-          aryItem.data.indexNav = [
-            { src: "../../static/indexnav/f.png", name: "我的房屋" },
-            { src: "../../static/indexnav/yq.png", name: "仿客邀请" },
-            { src: "../../static/indexnav/yc.png", name: "远程开门" },
-            { src: "../../static/indexnav/zd.png", name: "我的账单" },
-          ];
-          aryItem.data.indexNav2 = [
-            { src: "../../static/indexnav/rl.png", name: "人脸识别" },
-            { src: "../../static/indexnav/cart.png", name: "停车场" },
-            { src: "../../static/indexnav/dc.png", name: "我的车辆" },
-            { src: "../../static/indexnav/j.png", name: "停车缴费" },
-            { src: "../../static/indexnav/eng.png", name: "服务工单" },
-			{ src: "../../static/indexnav/video.png", name: "视频对讲" },
-            { src: "../../static/indexnav/cartd.png", name: "车辆充电" },
-            { src: "../../static/indexnav/c.png", name: "扫码充电" },
-            { src: "../../static/indexnav/l.png", name: "联系物业" },
-            { src: "../../static/indexnav/b.png", name: "在线报修" },
-            { src: "../../static/indexnav/ts.png", name: "投诉建议" },
-            { src: "../../static/indexnav/g.png", name: "注册" },
-          ];
-          aryItem.data.list = [
-            {
-              // 三屏广告
-              type: "ThreeAdverts",
-              data: [
-                { src: "../../static/images/demo/demo1.jpg" },
-                { src: "../../static/images/demo/demo2.jpg" },
-                { src: "../../static/images/demo/demo2.jpg" },
-              ],
-            },
-            {
-              // 大图广告
-              type: "OneAdvert",
-              data: {
-                name: "每日精选",
-                src: "../../static/images/demo/demo4.jpg",
-              },
-            },
-            {
-              type: "list", // 通用列表
-              data: [],
-            },
-          ];
-        }
-        if (this.tabBars[i].template === "special") {
-          aryItem.data.banners = [
-            { src: "../../static/images/demo/demo4.jpg" },
-            { src: "../../static/images/demo/demo8.jpg" },
-          ];
-          aryItem.data.indexNav = [
-            { src: "../../static/indexnav/1.png", name: "新品分类" },
-            { src: "../../static/indexnav/2.gif", name: "小米众筹" },
-            { src: "../../static/indexnav/3.gif", name: "以旧换新" },
-            { src: "../../static/indexnav/4.gif", name: "1分拼团" },
-            { src: "../../static/indexnav/5.gif", name: "超值特卖" },
-          ];
-          aryItem.data.list = [
-            {
-              type: "list", // 通用列表
-              data: [],
-            },
-          ];
-        }
-        ary.push(aryItem);
-      }
-      return ary;
-    },
-  },
+	components: {
+		swiperImage,
+		indexNav,
+		divider
+	},
+	data() {
+		return {
+			scrollTop: 0,
+			old: {
+				scrollTop: 0
+			},
+			banners: [{ src: '../../static/images/1.jpg' }, { src: '../../static/images/2.jpg' }],
+			indexNav1: [
+				{ src: '../../static/indexnav/f.png', name: '我的房屋', url: '../../pages/my-house/index' },
+				{ src: '../../static/indexnav/yq.png', name: '访客邀请', url: '' },
+				{ src: '../../static/indexnav/yc.png', name: '远程开门', url: '../../pages/openDoor/openDoor' },
+				{ src: '../../static/indexnav/zd.png', name: '我的账单', url: '' }
+			],
+			indexNav2: [
+				{ src: '../../static/indexnav/rl.png', name: '人脸识别', url: '' },
+				{ src: '../../static/indexnav/cart.png', name: '停车场', url: '../../pages/vehicle/info' },
+				{ src: '../../static/indexnav/dc.png', name: '我的车辆', url: '../../pages/vehicle/mycart' },
+				{ src: '../../static/indexnav/j.png', name: '停车缴费', url: '../../pages/vehicle/payment' },
+				{ src: '../../static/indexnav/eng.png', name: '服务工单', url: '../../pages/engine/engine' },
+				{ src: '../../static/indexnav/video.png', name: '视频对讲', url: '../../pages/vIntercom/index' },
+				{ src: '../../static/indexnav/cartd.png', name: '车辆充电', url: '../../pages/scan/record' },
+				{ src: '../../static/indexnav/c.png', name: '扫码充电', url: '../../pages/scan/scan' },
+				{ src: '../../static/indexnav/l.png', name: '联系物业', url: '' },
+				{ src: '../../static/indexnav/b.png', name: '在线报修', url: '' },
+				{ src: '../../static/indexnav/ts.png', name: '投诉建议', url: '' },
+				{ src: '../../static/indexnav/g.png', name: '注册', url: '../../pages/register/register' }
+			]
+		};
+	},
+	onLoad() {},
+	methods: {
+		upper: function(e) {
+			console.log(e);
+		},
+		lower: function(e) {
+			console.log(e);
+		},
+		scroll: function(e) {
+			console.log(e);
+			this.old.scrollTop = e.detail.scrollTop;
+		},
+		open(item) {
+			uni.navigateTo({
+				url: item.url
+			});
+		}
+	}
 };
 </script>
 
-<style>
+<style lang="scss">
 .uni-tab-bar-loading {
-  text-align: center;
-  font-size: 28upx;
-  color: #999;
+	text-align: center;
+	font-size: 28upx;
+	color: #999;
 }
+.home{
+	height: 100%;
+	overflow-y: auto;
+	/* 隐藏滚动条，但依旧具备可以滚动的功能 */
+	&::-webkit-scrollbar {
+		display: none;
+		width: 0 !important;
+		height: 0 !important;
+		-webkit-appearance: none;
+		background: transparent;
+	}
+	.gg {
+		height: 100upx;
+		background: #fff;
+		padding: 0 40upx;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		.lab {
+			font-size: 32upx;
+			color: #17adff;
+			font-weight: bold;
+			margin-right: 40upx;
+			display: flex;
+			align-items: center;
+			letter-spacing: 4upx;
+			font-family: 'Times New Roman', Georgia, Serif;
+			.lat {
+				font-size: 1em;
+				color: #f8a720;
+			}
+		}
+		.latitil {
+			font-size: 28upx;
+			color: #090909;
+		}
+	}
+	.indexnav {
+		padding: 20px;
+		background-color: #fff;
+		.navtitle {
+			border-left: 6upx solid #15acf3;
+			font-size: 26upx;
+			color: #2a2a2a;
+			font-weight: bold;
+			padding-left: 20upx;
+		}
+		.navtcont {
+			width: 100%;
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			.nva {
+				width: calc((100% - 200upx) / 2);
+				height: 164upx;
+				border-radius: 8upx;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 40upx;
+				margin-top: 40upx;
+				.nval {
+					color: #22150f;
+					font-size: 32upx;
+				}
+				&:nth-child(old) {
+					margin-right: 40upx;
+				}
+				&.nva1 {
+					background-image: radial-gradient(top left, #feeee1 70px, #fde8e3);
+				}
+				&.nva2 {
+					background-image: radial-gradient(top left, #ece9fc 70px, #e4edfc);
+				}
+				&.nva3 {
+					background-image: radial-gradient(top left, #edffe7 70px, #e4f9e6);
+				}
+				&.nva4 {
+					background-image: radial-gradient(top left, #e4f4ff 70px, #e2f2ff);
+				}
+			}
+		}
+	}
+	
+}
+
 </style>

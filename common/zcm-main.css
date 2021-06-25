@@ -286,6 +286,7 @@ body{
 .py-3 { padding-top: 30upx;padding-bottom: 30upx;}
 .py-4 { padding-top: 40upx;padding-bottom: 40upx;}
 .py-5 { padding-top: 50upx;padding-bottom: 50upx;}
+.py-6 { margin-top: 70upx;}
 
 .pt-0 { padding-top: 0;}
 .pt { padding-top: 5upx;}
