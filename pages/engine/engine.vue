@@ -41,6 +41,13 @@ export default {
 			return this.$store.state.user.token;
 		}
 	},
+	watch: {
+		token(newVal) {
+			if (newVal) {
+				this.init();
+			}
+		}
+	},
 	methods: {
 		init() {
 			/* if (!this.token) {
@@ -54,19 +61,23 @@ export default {
 				title: '加载中...',
 				mask: true
 			});
-			this.$H.get('/work/list', {}, { token: true }).then(res => {
-				console.log(res);
-				uni.hideLoading();
-				if(res.code == 200){
-					this.info = res.result[0];
-				}else{
+			this.$H
+				.get('/api/app/work/list', {}, { token: true })
+				.then(res => {
+					console.log(res);
+					uni.hideLoading();
+					let data = res.result;
+					console.log(data,typeof data)
+					this.info = data[0];
+					console.log(this.info)
+				})
+				.catch(err => {
+					uni.hideLoading();
 					uni.showToast({
-						title: res.message,
+						title: err.result,
 						icon: 'none'
 					});
-				}
-				
-			})
+				});
 		}
 	}
 };

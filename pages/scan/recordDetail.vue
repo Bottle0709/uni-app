@@ -47,7 +47,7 @@
 				</view>
 			</uni-card>
 			<!-- <view class="detail" v-if="info.status == '3'"><button class="sa sa1" type="primary">预约</button></view> -->
-			<view class="detail" v-if="info.status == '6'"><button class="sa sa2" type="primary">缴费</button></view>
+			<view class="detail" v-if="info.status == '6'" @click="jiaofe"><button class="sa sa2" type="primary">缴费</button></view>
 		</view>
 	</view>
 </template>
@@ -68,7 +68,8 @@ export default {
 				{ id: '6', name: '待缴费' },
 				{ id: '7', name: '已完成' }
 			],
-			info: {}
+			info: {},
+			id:""
 		};
 	},
 	computed: {
@@ -86,9 +87,36 @@ export default {
 	},
 	onLoad: function(option) {
 		console.log(option.id); //打印出上页面传递的参数
-		this.init(option.id);
+		this.id = option.id;
+		this.init();
+	},
+	watch: {
+		token(newVal) {
+			if (!!newVal && !!this.id) {
+				this.init();
+			}
+		}
 	},
 	methods: {
+		jiaofe() {
+			/* this.$H.get('/api/app/cdz/callbackCdz').then(res => {
+				if (res.code == 200) {
+					uni.showToast({
+						title: '缴纳成功',
+						icon: 'none'
+					});
+					this.totalAmount = '';
+				} else {
+					uni.showToast({
+						title: res.message,
+						icon: 'none'
+					});
+				}
+			}); */
+			uni.navigateTo({
+			  url:"/pages/play/index"
+			});
+		},
 		init(id) {
 			/* if (!this.token) {
 				uni.showToast({
@@ -101,18 +129,20 @@ export default {
 				title: '加载中...',
 				mask: true
 			});
-			this.$H.get('/cdz/queryByCommunityid?chargingpileno=' + id, {}, { token: true }).then(res => {
-				//console.log(res);
-				uni.hideLoading();
-				if (res.code == 200) {
+			this.$H
+				.get('/api/app/cdz/queryByCommunityid?chargingpileno=' + this.id, {}, { token: true })
+				.then(res => {
+					//console.log(res);
+					uni.hideLoading();
 					this.info = res.result || {};
-				} else {
+				})
+				.catch(err => {
+					uni.hideLoading();
 					uni.showToast({
-						title: res.message,
+						title: err.result,
 						icon: 'none'
 					});
-				}
-			});
+				});
 		}
 	}
 };

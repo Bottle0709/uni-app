@@ -21,6 +21,10 @@ Vue.component('loading-plus',loadingPlus)
 import $H from '@/common/lib/request.js';
 Vue.prototype.$H = $H
 
+// 引入upload库
+import $UP from '@/common/lib/upload.js';
+Vue.prototype.$UP = $UP
+
 // 权限跳转
 Vue.prototype.navigateTo = (options)=>{
 	// 判断用户是否登录

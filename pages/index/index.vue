@@ -14,7 +14,7 @@
 			<view class="indexnav">
 				<view class="navtitle">主要功能</view>
 				<view class="navtcont">
-					<view class="nva" :class="'nva' + (idx + 1)" v-for="(item, idx) in indexNav1" key="idx" @tap="open(item)">
+					<view class="nva" :class="'nva' + (idx + 1)" v-for="(item, idx) in indexNav1" :key="idx" @tap="open(item)">
 						<view class="nval">{{ item.name }}</view>
 						<image style="width: 80upx; height: 80upx" :src="item.src"></image>
 					</view>

@@ -33,9 +33,12 @@
 			},
 			goto(url) {
 				console.log("调整")
-			   uni.navigateTo({
-			      url:'../../pages/login/login'
-			   })
+				if(!this.token){
+					uni.navigateTo({
+					   url:'../../pages/login/login'
+					})
+				}
+			   
 			}
 		},
 	}

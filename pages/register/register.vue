@@ -469,7 +469,7 @@ var _this = this;
 			getXiaoQu(province,city,region){
 				this.xiaoqu=[];
 				this.xiaoquobj=[];
-				this.$H.get('sys/countryb/getxiaoqu?province='+province+'&city='+city+'&region='+region,{},{}).then(res=>{
+				this.$H.get('/sys/countryb/getxiaoqu?province='+province+'&city='+city+'&region='+region,{},{}).then(res=>{
 					
 					if(res.length>0){
 						for(var i=0;i<res.length;i++){
@@ -486,14 +486,15 @@ var _this = this;
 			getbuilding(ccid){
 				this.building=[];
 				this.buildingobj=[];
-				this.$H.get('sys/countryb/getBuilding?xiaoquid='+ccid,{},{}).then(res=>{
-					
-					if(res.length>0){
-						for(var i=0;i<res.length;i++){
+				this.$H.get('/sys/countryb/getBuilding?xiaoquid='+ccid,{},{}).then(res=>{
+					var data = res.result;
+					console.log(data);
+					if(data.length>0){
+						for(var i=0;i<data.length;i++){
 							let xiqo={};
-							xiqo.no=res[i].buildingNo;
-							xiqo.name=res[i].buildingName;
-							xiqo.id=res[i].id;
+							xiqo.no=data[i].buildingNo;
+							xiqo.name=data[i].buildingName;
+							xiqo.id=data[i].id;
 							this.building.push(xiqo.name);
 							this.buildingobj.push(xiqo);
 						}
@@ -504,13 +505,14 @@ var _this = this;
 			getHouse(ccid,buildingid){
 				this.house=[];
 				this.houseobj=[];
-				this.$H.get('sys/countryb/getHouse?communityid='+ccid+'&buildingid='+buildingid,{},{}).then(res=>{
-					
-					if(res.length>0){
-						for(var i=0;i<res.length;i++){
+				this.$H.get('/sys/countryb/getHouse?communityid='+ccid+'&buildingid='+buildingid,{},{}).then(res=>{
+					var data = res.result;
+					console.log(data);
+					if(data.length>0){
+						for(var i=0;i<data.length;i++){
 							let xiqo={};
-							 xiqo.id=res[i].id;
-							 xiqo.name=res[i].unitNo;
+							 xiqo.id=data[i].id;
+							 xiqo.name=data[i].unitNo;
 							 this.house.push(xiqo.name);
 							 this.houseobj.push(xiqo);
 						}

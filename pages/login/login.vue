@@ -130,7 +130,7 @@ export default {
 				code: this.code,
 				phone: this.phone
 			};
-			this.$H.post('/login/login?' + qs.stringify(data)).then(res => {
+			this.$H.post('/api/app/login/login?' + qs.stringify(data)).then(res => {
 				// 状态存储
 				this.login(res.result);
 				uni.hideLoading();

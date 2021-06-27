@@ -27,13 +27,27 @@ export default {
 	onLoad() {},
 	methods: {
 		open() {
-			this.$H.get('/work/remoteDoor', {}, { token: false }).then(res => {
-				console.log(res);
-				uni.showToast({
-					title: res,
-					icon: 'none'
-				});
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
 			});
+			this.$H
+				.get('/api/app/work/remoteDoor', {}, { token: false })
+				.then(res => {
+					console.log(res);
+					uni.hideLoading();
+					uni.showToast({
+						title: res.result,
+						icon: 'none'
+					});
+				})
+				.catch(err => {
+					uni.hideLoading();
+					uni.showToast({
+						title: err.result,
+						icon: 'none'
+					});
+				});
 		}
 	}
 };

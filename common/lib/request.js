@@ -2,7 +2,7 @@ import $store from '@/store/index.js'
 export default {
 	// 全局配置
 	common: {
-		baseUrl: "http://121.14.17.70:8080/jeecg-boot/api/app",
+		baseUrl: "http://121.14.17.70:8080/jeecg-boot",
 		header: {
 			'Content-Type': 'application/json;charset=UTF-8',
 			'Content-Type': 'application/x-www-form-urlencoded'
@@ -39,37 +39,59 @@ export default {
 		return new Promise((res, rej) => {
 			// 请求之前... todo
 			// 请求中...
-			uni.request({
-				...options,
-				success: (result) => {
-					// 返回原始数据
-					if (options.native) {
-						return res(result)
-					}
-					// 服务端失败
-					if (result.statusCode !== 200) {
-						if (options.toast !== false) {
+				uni.request({
+					url: this.common.baseUrl + options.url,
+					...options,
+					success: (result) => {
+						// 返回原始数据
+						if (options.native) {
+							return res(result)
+						}
+						// 服务端失败
+						if (result.statusCode !== 200) {
+							if (options.toast !== false) {
+								uni.showToast({
+									title: result.data.msg || '服务端失败',
+									icon: 'none'
+								});
+							}
+							return rej(result.data)
+						}
+						console.log(result)
+						// 请求成功-但接口不通
+						let data = result.data;
+						if (data.code == 200) {
+							return res(data)
+						} else if (data.code == 500) {
 							uni.showToast({
-								title: result.data.msg || '服务端失败',
+								title: data.result,
 								icon: 'none'
 							});
+						} else if (data.code == 501) {
+							$store.commit('logout')
+							uni.showToast({
+								title: "登录失效，请重新登录！",
+								icon: 'none'
+							});
+							return uni.navigateTo({
+								url: '/pages/login/login',
+							});
+						} else {
+							return rej(data)
 						}
-						return rej(result.data)
+					},
+					fail: (error) => {
+						console.log(error)
+						uni.showToast({
+							title: error.errMsg || '请求失败',
+							icon: 'none'
+						});
+						return rej()
 					}
-					//console.log(result)
-					// 成功
-					let data = result.data;
-					res(data)
+				});
+			
 
-				},
-				fail: (error) => {
-					uni.showToast({
-						title: error.errMsg || '请求失败',
-						icon: 'none'
-					});
-					return rej()
-				}
-			});
+
 		})
 	},
 	// get请求

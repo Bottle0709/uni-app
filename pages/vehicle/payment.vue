@@ -1,7 +1,7 @@
 <template>
 	<view class="main-bg-color payment">
 		<!--  <no-thing v-if="!token" msg="暂无数据"></no-thing>-->
-		<uni-card>
+		<uni-card v-if="">
 			<view class="info-list">
 				<view class="l-la">缴费方式</view>
 				<view class="l-if">
@@ -105,7 +105,10 @@ export default {
 				uni.showToast({ title: '请输入正确的费用:整数或者保留两位小数', icon: 'none' });
 				return false;
 			}
-			let data = {
+			uni.navigateTo({
+			  url:"/pages/play/index"
+			});
+			/* let data = {
 				type: this.payType,
 				totalAmount: this.totalAmount
 			};
@@ -120,7 +123,7 @@ export default {
 				title: '请求中...',
 				mask: true
 			});
-			this.$H.post('/park/add?' + qs.stringify(data)).then(res => {
+			this.$H.post('/api/app/park/add?' + qs.stringify(data)).then(res => {
 				uni.hideLoading();
 				if (res.code == 200) {
 					uni.showToast({
@@ -134,7 +137,7 @@ export default {
 						icon: 'none'
 					});
 				}
-			});
+			}); */
 		},
 		radioChange: function(evt) {
 			for (let i = 0; i < this.items.length; i++) {

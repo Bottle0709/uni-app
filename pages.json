@@ -2,9 +2,9 @@
 	"pages": [{
 			"path": "pages/index/index",
 			"style": {
-				//"navigationBarTitleText": "智慧社区",
+				"navigationBarTitleText": "智慧社区",
 				"app-plus": {
-					"titleNView": false, //禁用原生导航栏  
+					//"titleNView": false, //禁用原生导航栏  
 					"scrollIndicator": "none", //隐藏滚动条
 					"bounce": "none" //关闭反弹效果
 				}
@@ -13,9 +13,9 @@
 		{
 			"path": "pages/class/class",
 			"style": {
-				//"navigationBarTitleText": "服务",
+				"navigationBarTitleText": "服务",
 				"app-plus": {
-					"titleNView": false, //禁用原生导航栏  
+					//"titleNView": false, //禁用原生导航栏  
 					"scrollIndicator": "none", //隐藏滚动条
 					"bounce": "none" //关闭反弹效果
 				}
@@ -165,6 +165,28 @@
 			"path": "pages/register/register",
 			"style": {
 				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator": "none", //隐藏滚动条
+					"bounce": "none" //关闭反弹效果
+				}
+			}
+		},
+		{
+			"path": "pages/play/index",
+			"style": {
+				"navigationBarTitleText": "支付",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator": "none", //隐藏滚动条
+					"bounce": "none" //关闭反弹效果
+				}
+			}
+		},
+		{
+			"path": "pages/play/success",
+			"style": {
+				"navigationBarTitleText": "支付结果",
 				"enablePullDownRefresh": false,
 				"app-plus": {
 					"scrollIndicator": "none", //隐藏滚动条

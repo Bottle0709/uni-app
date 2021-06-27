@@ -9,5 +9,8 @@
         "ImageX",
         "app",
         "小程序"
-    ]
+    ],
+    "dependencies": {
+        "image-conversion": "^2.1.1"
+    }
 }

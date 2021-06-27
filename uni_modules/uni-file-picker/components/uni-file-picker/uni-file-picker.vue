@@ -347,6 +347,7 @@ export default {
 							tempFiles: currentData,
 							tempFilePaths: filePaths
 						})
+						console.log(files)
 						res.tempFiles = files
 						// 停止自动上传
 						if (!this.autoUpload) {
@@ -510,6 +511,7 @@ export default {
 			let fileFullName = this.getFileExt(files.name)
 			const extname = fileFullName.ext.toLowerCase()
 			let filedata = {
+				files:files,
 				name: files.name,
 				uuid: files.uuid,
 				extname: extname || '',

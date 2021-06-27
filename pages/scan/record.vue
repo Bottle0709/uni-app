@@ -6,7 +6,7 @@
 			</view>
 			<view class="tab-cont" :class="{ tcenter: isNoData }">
 				<view class="tcont">
-					<z-paging ref="paging" v-model="recordlist"  @query="queryList">
+					<z-paging ref="paging" v-model="recordlist" @query="queryList">
 						<view>
 							<view v-for="(item, idx) in recordlist" :key="idx">
 								<uni-card>
@@ -16,10 +16,14 @@
 											<view class="status" :class="'st_' + item.status">{{ item.statusName }}</view>
 										</view>
 										<view class="cont">{{ item.communityname }} - {{ item.position }}</view>
-										<view class="foot" :class="current == 2?'jsc':''">
+										<view class="foot" :class="current == 2 ? 'jsc' : ''">
 											<!-- <view class="detail" v-if="item.status == '3' || item.status == '4'"><button class="sa sa1" type="primary">预约</button></view> -->
-											<view class="detail" v-if="(current == 2 && item.status == '1')"><button class="sa sa2" type="primary" @click="jiaofe">缴费</button></view>
-											<view class="detail"><button class="sa" type="primary" @click="goto('/pages/scan/recordDetail',item.chargingpileno)">详情</button></view>
+											<view class="detail" v-if="current == 2 && item.status == '1'">
+												<button class="sa sa2" type="primary" @click="jiaofe">缴费</button>
+											</view>
+											<view class="detail">
+												<button class="sa" type="primary" @click="goto('/pages/scan/recordDetail', item.chargingpileno)">详情</button>
+											</view>
 										</view>
 									</view>
 								</uni-card>
@@ -45,12 +49,19 @@ export default {
 			statuslist: [{ id: '1', name: '充电中' }, { id: '2', name: '故障' }, { id: '3', name: '空闲' }, { id: '4', name: '插枪空闲' }, { id: '5', name: '离线' }],
 			statuslist2: [{ id: '1', name: '待支付' }, { id: '2', name: '已完成' }],
 			isNoData: false,
-			recordlist: [],
+			recordlist: []
 		};
 	},
 	computed: {
 		token() {
 			return this.$store.state.user.token;
+		}
+	},
+	watch: {
+		token(newVal) {
+			if (newVal) {
+				this.queryList(1, 10);
+			}
 		}
 	},
 	methods: {
@@ -63,8 +74,8 @@ export default {
 			this.current = id;
 			this.queryList(1, 10);
 		},
-		jiaofe(){
-			this.$H.get('/cdz/callbackCdz').then(res => {
+		jiaofe() {
+			/* this.$H.get('/api/app/cdz/callbackCdz').then(res => {
 				if (res.code == 200) {
 					uni.showToast({
 						title: '缴纳成功',
@@ -77,6 +88,9 @@ export default {
 						icon: 'none'
 					});
 				}
+			}); */
+			uni.navigateTo({
+			  url:"/pages/play/index"
 			});
 		},
 		queryList(pageNo, pageSize) {
@@ -90,30 +104,45 @@ export default {
 			//这里的pageNo和pageSize会自动计算好，直接传给服务器即可
 			//这里的请求只是演示，请替换成自己的项目的网络请求，请在网络请求回调中
 			//通过this.$refs.paging.complete(请求回来的数组);将请求结果传给z-paging
-			let url;let data;
-			if(this.current == 0 || this.current == 1){
-				url = "/cdz/queryCdzPage";
-				data = { pageNo: pageNo, pageSize: pageSize,status:this.current == 0?"":'1' }
-			}else{
-				url = "/cdz/finishCd";
-				data = { pageNo: pageNo, pageSize: pageSize,status:this.current == '2'?1:2 }
-			}
-			this.$H.get(url, data, { token: true }).then(res => {
-				//console.log(res);
-				let data = res.result.records || [];
-				if (data.length) {
-					data = data.map(item => {
-						let statusl = this.current == 0 || this.current == 1?this.statuslist:this.statuslist2
-						let index = statusl.findIndex(a => a.id == item.status);
-						return {
-							...item,
-							statusName: index == -1 ? '' : statusl[index].name
-						};
-					});
-				}
-				this.$refs.paging.complete(data);
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
 			});
-		},
+			let url;
+			let data;
+			if (this.current == 0 || this.current == 1) {
+				url = '/api/app/cdz/queryCdzPage';
+				data = { pageNo: pageNo, pageSize: pageSize, status: this.current == 0 ? '' : '1' };
+			} else {
+				url = '/api/app/cdz/finishCd';
+				data = { pageNo: pageNo, pageSize: pageSize, status: this.current == '2' ? 1 : 2 };
+			}
+			this.$H
+				.get(url, data, { token: true })
+				.then(res => {
+					//console.log(res);
+					uni.hideLoading();
+					let data = res.result.records || [];
+					if (data.length) {
+						data = data.map(item => {
+							let statusl = this.current == 0 || this.current == 1 ? this.statuslist : this.statuslist2;
+							let index = statusl.findIndex(a => a.id == item.status);
+							return {
+								...item,
+								statusName: index == -1 ? '' : statusl[index].name
+							};
+						});
+					}
+					this.$refs.paging.complete(data);
+				})
+				.catch(err => {
+					uni.hideLoading();
+					uni.showToast({
+						title: err.result,
+						icon: 'none'
+					});
+				});
+		}
 	}
 };
 </script>
@@ -231,7 +260,7 @@ export default {
 					display: flex;
 					align-items: center;
 					justify-content: flex-end;
-					&.jsc{
+					&.jsc {
 						justify-content: space-between;
 					}
 					.detail {

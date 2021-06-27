@@ -35,6 +35,13 @@ export default {
 			return this.$store.state.user.token;
 		}
 	},
+	watch: {
+		token(newVal) {
+			if (newVal) {
+				this.init();
+			}
+		}
+	},
 	methods: {
 		init() {
 			/* if (!this.token) {
@@ -48,18 +55,19 @@ export default {
 				title: '加载中...',
 				mask: true
 			});
-			this.$H.get('/park/queryByVehicleId', {}, { token: true }).then(res => {
-				console.log(res);
-				uni.hideLoading();
-				if(res.code == 200){
+			this.$H
+				.get('/api/app/park/queryByVehicleId', {}, { token: true })
+				.then(res => {
+					uni.hideLoading();
 					this.cartInfo = res.result || null;
-				}else{
+				})
+				.catch(err => {
+					uni.hideLoading();
 					uni.showToast({
-						title: res.message,
+						title: err.result,
 						icon: 'none'
 					});
-				}
-			})
+				});
 		}
 	}
 };

@@ -21,7 +21,7 @@
 							<view class="l-la">空闲车位数量</view>
 							<view class="l-if">{{ item.kxcount }} 俩</view>
 						</view>
-						<view class="info-list info-btn last"><button class="inbtn" type="default" @click="openLocation(item.lng, item.lat)">导航</button></view>
+						<view class="info-list info-btn last"><button class="inbtn" type="default" @click="openLocation(item.lng, item.lat, item.parkaddress)">导航</button></view>
 					</uni-card>
 				</view>
 			</view>
@@ -47,15 +47,30 @@ export default {
 			return this.$store.state.user.token;
 		}
 	},
+	watch: {
+		token(newVal) {
+			if (newVal) {
+				this.queryList(1, 10);
+			}
+		}
+	},
 	methods: {
-		openLocation(longitude, latitude) {
-			const lat = 116.39747;
-			const long = 39.9085;
+		openLocation(longitude, latitude, name) {
+			let lat = Number(latitude);
+			let lg = Number(longitude);
+			let na = name;
+
+			/* let lat = 23.268826;
+			let lg = 113.797935;
+			let na = '五一村新安置社区'; */
 			uni.openLocation({
 				latitude: lat,
-				longitude: long,
-				success: function() {
-					console.log('success');
+				longitude: lg,
+				name: na,
+				fail: () => {
+					uni.showModal({
+						content: '打开地图失败,请重'
+					});
 				}
 			});
 		},
@@ -77,12 +92,21 @@ export default {
 				title: '加载中...',
 				mask: true
 			});
-			this.$H.get('/park/queryByCommunityid', { pageNo: pageNo, pageSize: pageSize }, { token: true }).then(res => {
-				console.log(res);
-				uni.hideLoading();
-				let data = res.result.records || [];
-				this.$refs.paging.complete(data);
-			});
+			this.$H
+				.get('/api/app/park/queryByCommunityid', { pageNo: pageNo, pageSize: pageSize }, { token: true })
+				.then(res => {
+					console.log(res);
+					uni.hideLoading();
+					let data = !res.result ? [] : res.result.records || [];
+					this.$refs.paging.complete(data);
+				})
+				.catch(err => {
+					uni.hideLoading();
+					uni.showToast({
+						title: err.result,
+						icon: 'none'
+					});
+				});
 		}
 	}
 };
@@ -133,7 +157,7 @@ export default {
 					text-align: center;
 					color: #fff;
 					background: #de5f0e;
-					font-size: 14upx;
+					font-size: 28upx;
 
 					&:after {
 						border-color: #de5f0e;
