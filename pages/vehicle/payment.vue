@@ -32,6 +32,7 @@
 <script>
 import noThing from '@/components/common/no-thing.vue';
 import qs from 'qs';
+import { mapMutations } from 'vuex';
 export default {
 	props: {},
 	components: { noThing },
@@ -68,6 +69,7 @@ export default {
 		}
 	},
 	methods: {
+		...mapMutations(['setPrice']),
 		priceChange() {
 			//先把非数字的都替换掉，除了数字和.
 			var vv = this.totalAmount;
@@ -105,6 +107,7 @@ export default {
 				uni.showToast({ title: '请输入正确的费用:整数或者保留两位小数', icon: 'none' });
 				return false;
 			}
+			this.setPrice(this.totalAmount);
 			uni.navigateTo({
 			  url:"/pages/play/index"
 			});

@@ -57,11 +57,11 @@
 					"scrollIndicator": "none",
 					"titleNView": {
 						"buttons": [{
-							"type": "none",
-							"color": "#222",
-							"colorPressed": "#BBBBBB",
+							"type": "default",
+							"color": "#de5f0e",
+							"colorPressed": "#de5f0e",
 							"float": "right",
-							"fontSize": "17px",
+							"fontSize": "15px",
 							"text": "提交"
 						}]
 					}

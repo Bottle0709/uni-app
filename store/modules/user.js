@@ -7,7 +7,9 @@ export default {
 		// 用户信息
 		userInfo:{},
 		//房屋信息
-		houseInfo:{}
+		houseInfo:{},
+		//支付费用
+		price:50
 	},
 	mutations:{
 		// 初始化登录状态
@@ -42,6 +44,10 @@ export default {
 		//房屋信息
 		setHouseInfo(state,info){
 			state.houseInfo = info
-		}
+		},
+		//支付费用
+		setPrice(state,price){
+			state.price = price
+		},
 	}
 }

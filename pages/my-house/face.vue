@@ -90,13 +90,13 @@ export default {
 							icon: 'none'
 						});
 					})
-					.catch(err => {
+					/* .catch(err => {
 						uni.hideLoading();
 						uni.showToast({
 							title: err.result,
 							icon: 'none'
 						});
-					});
+					}); */
 			});
 		},
 		init() {

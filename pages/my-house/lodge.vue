@@ -257,13 +257,13 @@ export default {
 					});
 					this.clearVal();
 				})
-				.catch(err => {
+				/* .catch(err => {
 					uni.hideLoading();
 					uni.showToast({
 						title: err.result,
 						icon: 'none'
 					});
-				});
+				}); */
 		},
 		clearVal() {
 			this.fitType = ''; //装修情况

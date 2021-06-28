@@ -64,7 +64,7 @@ export default {
 							return res(data)
 						} else if (data.code == 500) {
 							uni.showToast({
-								title: data.result,
+								title: data.message,
 								icon: 'none'
 							});
 						} else if (data.code == 501) {

@@ -74,13 +74,13 @@ export default {
 					uni.hideLoading();
 					this.houseDetail = res.result || {};
 				})
-				.catch(err => {
+				/* .catch(err => {
 					uni.hideLoading();
 					uni.showToast({
 						title: err.result,
 						icon: 'none'
 					});
-				});
+				}); */
 		}
 	}
 };

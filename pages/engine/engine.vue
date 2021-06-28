@@ -71,13 +71,13 @@ export default {
 					this.info = data[0];
 					console.log(this.info)
 				})
-				.catch(err => {
+				/* .catch(err => {
 					uni.hideLoading();
 					uni.showToast({
 						title: err.result,
 						icon: 'none'
 					});
-				});
+				}); */
 		}
 	}
 };

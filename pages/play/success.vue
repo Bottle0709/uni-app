@@ -4,13 +4,34 @@
 			<image class="jimg" src="../../static/images/sucess.png"></image>
 			<view class="jn">支付成功</view>
 			<view class="jcom">xxxx确认收款</view>
-			<view class="jprice">¥50</view>
+			<view class="jprice">¥{{price}}</view>
 		</view>
-		<view class="jcomfriem">完成</view>
+		<view class="jcomfriem" @click="goto()">完成</view>
 	</view>
 </template>
 
-<script></script>
+<script>
+export default {
+	components: {  },
+	data() {
+		return {
+			
+		};
+	},
+	computed: {
+		price() {
+			return this.$store.state.user.price;
+		},
+	},
+	methods:{
+		goto() {
+			uni.switchTab({
+				url: '/pages/index/index',
+			});
+		},
+	}
+};
+</script>
 
 <style lang="scss" scoped>
 .sucess {
@@ -45,7 +66,7 @@
 			color: #222;
 		}
 	}
-	.jcomfriem{
+	.jcomfriem {
 		margin: 0 20upx;
 		height: 80upx;
 		line-height: 80upx;

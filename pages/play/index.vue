@@ -4,7 +4,7 @@
 			<view class="p-price">
 				<view class="pr">
 					<span>¥</span>
-					50
+					{{price}}
 				</view>
 				<view class="pr-t">待支付金额</view>
 			</view>
@@ -86,6 +86,11 @@ export default {
 			}
 		};
 	},
+	computed: {
+		price() {
+			return this.$store.state.user.price;
+		},
+	},
 	methods: {
 		toOpen(payType, keyType, pawType, img1, img2) {
 			this.pwd.isPwy = true;
@@ -95,6 +100,7 @@ export default {
 			this.pwd.keyType = keyType;
 			this.pwd.pawType = pawType;
 			this.pwd.places = 6;
+			this.pwd.money = this.price
 			this.$refs.jpPwds.toOpen();
 		},
 		completed(e) {

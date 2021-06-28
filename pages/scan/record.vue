@@ -135,13 +135,13 @@ export default {
 					}
 					this.$refs.paging.complete(data);
 				})
-				.catch(err => {
+				/* .catch(err => {
 					uni.hideLoading();
 					uni.showToast({
 						title: err.result,
 						icon: 'none'
 					});
-				});
+				}); */
 		}
 	}
 };

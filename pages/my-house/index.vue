@@ -73,13 +73,13 @@ export default {
 					this.housInfo = res.result[0] || null;
 					this.setHouseInfo(this.housInfo);
 				})
-				.catch(err => {
+				/* .catch(err => {
 					uni.hideLoading();
 					uni.showToast({
 						title: err.result,
 						icon: 'none'
 					});
-				});
+				}); */
 		}
 	}
 };
