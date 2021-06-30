@@ -221,6 +221,10 @@ export default {
 		},
 		//上传图片
 		uploadFile() {
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
 			let that = this;
 			this.imageFile.map(item => {
 				this.$UP.uploadFile('/file/img_upload', item).then(res => {
@@ -242,10 +246,6 @@ export default {
 				zxqk: this.fitType,
 				remark: this.remarks
 			};
-			uni.showLoading({
-				title: '加载中...',
-				mask: true
-			});
 			this.$H
 				.post('/api/app/residentvo/addRenting', obj, { token: true })
 				.then(res => {
