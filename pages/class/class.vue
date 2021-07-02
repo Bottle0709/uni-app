@@ -153,7 +153,7 @@ export default {
 						{ src: '../../static/indexnav/dc.png', name: '我的车辆', url: '../../pages/vehicle/mycart' },
 						{ src: '../../static/indexnav/j.png', name: '停车缴费', url: '../../pages/vehicle/mycart' },
 						{ src: '../../static/indexnav/rl.png', name: '人脸采集', url: '' },
-						{ src: '../../static/indexnav/yq.png', name: '访客邀请', url: '' },
+						{ src: '../../static/indexnav/yq.png', name: '访客邀请', url: '../../pages/visitor/index' },
 						{ src: '../../static/indexnav/b.png', name: '在线报修', url: '' },
 
 						{ src: '../../static/indexnav/l.png', name: '联系物业', url: '' },

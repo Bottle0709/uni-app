@@ -204,6 +204,20 @@
 					"bounce": "none" //关闭反弹效果
 				}
 			}
+		},
+		{
+			"path": "pages/visitor/index",
+			"style": {
+				"navigationBarTitleText": "访客授权",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/visitor/open",
+			"style": {
+				"navigationBarTitleText": "开门授权",
+				"enablePullDownRefresh": false
+			}
 		}
 	],
 	"globalStyle": {

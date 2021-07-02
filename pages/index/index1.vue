@@ -48,7 +48,7 @@ export default {
 			banners: [{ src: '../../static/images/1.jpg' }, { src: '../../static/images/2.jpg' }],
 			indexNav1: [
 				{ src: '../../static/indexnav/f.png', name: '我的房屋', url: '../../pages/my-house/index' },
-				{ src: '../../static/indexnav/yq.png', name: '访客邀请', url: '' },
+				{ src: '../../static/indexnav/yq.png', name: '访客邀请', url: '../../pages/visitor/index' },
 				{ src: '../../static/indexnav/yc.png', name: '远程开门', url: '../../pages/openDoor/openDoor' },
 				{ src: '../../static/indexnav/zd.png', name: '我的账单', url: '' }
 			],

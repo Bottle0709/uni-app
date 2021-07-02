@@ -15,33 +15,42 @@
 			<img class="simg" src="@/static/images/shuo.png" />
 			<button class="sbtn" type="primary" @click="open()">一键开门</button>
 		</view>
+		<xy-dialog ref="xyDialog">
+			<view class="open">
+				<view class="num">电子钥匙(0/17)</view>
+				<img class="oimg" src="@/static/images/loading.gif" />
+				<view class="tip">正在连接门禁...</view>
+			</view>
+		</xy-dialog>
 	</view>
 </template>
 
 <script>
+import xyDialog from '@/components/xy-dialog/xy-dialog.vue';
 export default {
-	components: {},
+	components: {
+		xyDialog
+	},
 	data() {
 		return {};
 	},
 	onLoad() {},
 	methods: {
 		open() {
-			uni.showLoading({
+			this.$refs.xyDialog.showDialog();
+			/* uni.showLoading({
 				title: '加载中...',
 				mask: true
-			});
-			this.$H
-				.get('/api/app/work/remoteDoor', {}, { token: false })
-				.then(res => {
-					console.log(res);
-					uni.hideLoading();
-					uni.showToast({
-						title: res.result,
-						icon: 'none'
-					});
-				})
-				/* .catch(err => {
+			}); */
+			/* this.$H.get('/api/app/work/remoteDoor', {}, { token: false }).then(res => {
+				console.log(res);
+				uni.hideLoading();
+				uni.showToast({
+					title: res.result,
+					icon: 'none'
+				});
+			}); */
+			/* .catch(err => {
 					uni.hideLoading();
 					uni.showToast({
 						title: err.result,
@@ -100,6 +109,28 @@ export default {
 			background-color: #f89150;
 			color: #fff;
 		}
+	}
+}
+.open {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	.num {
+		position: absolute;
+		right: 30upx;
+		top: 0;
+		font-size: 24upx;
+	}
+	.oimg {
+		width: 320upx;
+	}
+	.tip {
+		color: #222;
+		font-size: 28upx;
 	}
 }
 </style>

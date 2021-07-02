@@ -1,7 +1,7 @@
 <template>
 	<view class="main-bg-color payment">
 		<!--  <no-thing v-if="!token" msg="暂无数据"></no-thing>-->
-		<uni-card v-if="">
+		<uni-card>
 			<view class="info-list">
 				<view class="l-la">缴费方式</view>
 				<view class="l-if">
