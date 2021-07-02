@@ -20,7 +20,7 @@
 			</view>
 			<view class="info-list">
 				<view class="l-la">授权方式</view>
-				<view class="l-if"></view>
+				<view class="l-if"><label class="radio"><radio value="r1" checked="true" color="#de5f0e"/>选中</label></view>
 			</view>
 			<view class="info-list">
 				<view class="l-la">到访时间</view>
