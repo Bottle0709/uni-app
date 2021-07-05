@@ -20,13 +20,18 @@
 			</view>
 			<view class="info-list">
 				<view class="l-la">授权方式</view>
-				<view class="l-if"><label class="radio"><radio value="r1" checked="true" color="#de5f0e"/>选中</label></view>
+				<view class="l-if"><label class="radio"><radio value="r1" checked="true" color="#de5f0e"/>一进一出</label></view>
 			</view>
 			<view class="info-list">
 				<view class="l-la">到访时间</view>
-				<view class="l-if"></view>
+				<view class="l-if">
+					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+						<view class="uni-input">{{ date }}</view>
+					</picker>
+				</view>
 			</view>
 		</uni-card>
+	    <view class="vbtn" @click="goto">生成通行证</view>
 	</view>
 </template>
 
@@ -35,16 +40,54 @@ export default {
 	props: {},
 	components: {},
 	data() {
+		const currentDate = this.getDate({
+			format: true
+		});
 		return {
 			address:"",
 			username:"",
 			phone:"",
 			visitorname:"",
 			type:"",
-			date:""
+			date:currentDate
 		};
 	},
-	methods: {}
+	computed: {
+		token() {
+			return this.$store.state.user.token;
+		},
+		startDate() {
+			return this.getDate('start');
+		},
+		endDate() {
+			return this.getDate('end');
+		}
+	},
+	methods: {
+		goto() {
+			uni.navigateTo({
+				url: '/pages/visitor/open'
+			});
+		},
+		bindDateChange: function(e) {
+			this.date = e.target.value;
+		},
+		getDate(type) {
+			const date = new Date();
+			let year = date.getFullYear();
+			let month = date.getMonth() + 1;
+			let day = date.getDate();
+		
+			if (type === 'start') {
+				year = year - 60;
+			} else if (type === 'end') {
+				year = year + 2;
+			}
+			month = month > 9 ? month : '0' + month;
+			day = day > 9 ? day : '0' + day;
+			return `${year}-${month}`;
+		}
+	}
 };
 </script>
 
@@ -80,6 +123,9 @@ export default {
 		&.last {
 			margin-bottom: 0;
 		}
+		.l-la{
+			font-weight: bold;
+		}
 		.l-if {
 			display: flex;
 			align-items: center;
@@ -89,7 +135,29 @@ export default {
 			.uni-input {
 				padding: 0;
 			}
+			/deep/.radio{
+				display: flex;
+				align-items: center;
+				.uni-radio-input {
+					width: 28upx;
+					height: 28upx;
+					&.uni-radio-input-checked:before {
+						font-size: 28upx;
+					}
+				}
+			} 
 		}
+	}
+	.vbtn{
+		margin: 0 40upx;
+		height: 80upx;
+		line-height: 80upx;
+		text-align: center;
+		background: #de5f0e;
+		color: #fff;
+		font-size: 28upx;
+		border-radius: 50upx;
+		margin-top: 80upx;
 	}
 }
 </style>

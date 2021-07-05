@@ -19,7 +19,7 @@
 						</view>
 						<view class="info-list">
 							<view class="l-la">空闲车位数量</view>
-							<view class="l-if">{{ item.kxcount }} 俩</view>
+							<view class="l-if">{{ item.kxcount }} 辆</view>
 						</view>
 						<view class="info-list info-btn last"><button class="inbtn" type="default" @click="openLocation(item.lng, item.lat, item.parkaddress)">导航</button></view>
 					</uni-card>
