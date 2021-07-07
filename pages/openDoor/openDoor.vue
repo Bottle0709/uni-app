@@ -10,7 +10,7 @@
 					</view>
 					<view class="door">
 						<view class="label">位置</view>
-						<view class="txt">{{opens.unitno}}{{opens.buildingname}}{{opens.floorno}}{{opens.houseno}}</view>
+						<view class="txt">{{opens.buildingname}}{{opens.unitno}}{{opens.floorno}}{{opens.houseno}}</view>
 					</view>
 				</view>
 				<view class="shou">
