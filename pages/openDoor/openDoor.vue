@@ -1,27 +1,31 @@
 <template>
-	<view class="openDoor">
-		<view class="title">欢迎回家</view>
-		<view class="door-cont">
-			<view class="door">
-				<view class="label">小区</view>
-				<view class="txt">xxxx栋</view>
+	<view class="openDoor  main-bg-color">
+		<uni-card>
+			<view class="opens">
+				<view class="title">欢迎回家</view>
+				<view class="door-cont">
+					<view class="door">
+						<view class="label">小区</view>
+						<view class="txt">{{opens.communityname}}</view>
+					</view>
+					<view class="door">
+						<view class="label">位置</view>
+						<view class="txt">{{opens.unitno}}{{opens.buildingname}}{{opens.floorno}}{{opens.houseno}}</view>
+					</view>
+				</view>
+				<view class="shou">
+					<img class="simg" src="@/static/images/shuo.png" />
+					<button class="sbtn" type="primary" @click="open()">一键开门</button>
+				</view>
+				<xy-dialog ref="xyDialog">
+					<view class="open">
+						<view class="num">电子钥匙(0/17)</view>
+						<img class="oimg" src="@/static/images/loading.gif" />
+						<view class="tip">正在连接门禁...</view>
+					</view>
+				</xy-dialog>
 			</view>
-			<view class="door">
-				<view class="label">位置</view>
-				<view class="txt">顶顶顶顶</view>
-			</view>
-		</view>
-		<view class="shou">
-			<img class="simg" src="@/static/images/shuo.png" />
-			<button class="sbtn" type="primary" @click="open()">一键开门</button>
-		</view>
-		<xy-dialog ref="xyDialog">
-			<view class="open">
-				<view class="num">电子钥匙(0/17)</view>
-				<img class="oimg" src="@/static/images/loading.gif" />
-				<view class="tip">正在连接门禁...</view>
-			</view>
-		</xy-dialog>
+		</uni-card>
 	</view>
 </template>
 
@@ -32,31 +36,47 @@ export default {
 		xyDialog
 	},
 	data() {
-		return {};
+		return {
+			opens:""
+		};
 	},
 	onLoad() {},
+	created(){
+		this.init();
+	},
 	methods: {
-		open() {
-			this.$refs.xyDialog.showDialog();
-			/* uni.showLoading({
+		init(){
+			uni.showLoading({
 				title: '加载中...',
 				mask: true
-			}); */
-			/* this.$H.get('/api/app/work/remoteDoor', {}, { token: false }).then(res => {
+			});
+			this.$H.post('/api/app/work/residentInfo', {}, { token: true }).then(res => {
+				console.log(res);
+				this.opens = res.result;
+				uni.hideLoading();
+			});
+		},
+		open() {
+			this.$refs.xyDialog.showDialog();
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
+			this.$H.get('/api/app/work/remoteDoor', {}, { token: false }).then(res => {
 				console.log(res);
 				uni.hideLoading();
 				uni.showToast({
 					title: res.result,
 					icon: 'none'
 				});
-			}); */
+			});
 			/* .catch(err => {
 					uni.hideLoading();
 					uni.showToast({
 						title: err.result,
 						icon: 'none'
 					});
-				}); */
+				});*/
 		}
 	}
 };
@@ -64,13 +84,15 @@ export default {
 
 <style lang="scss" scoped>
 .openDoor {
-	display: flex;
-	flex-direction: column;
-	background-color: #f8f9fa;
 	width: 750upx;
-	height: 100%;
-	vertical-align: bottom;
-	justify-items: center;
+	height: calc(100% - 20upx);
+    padding-top: 20upx;
+	.opens {
+		display: flex;
+		flex-direction: column;
+		vertical-align: bottom;
+		justify-items: center;
+	}
 	.title {
 		font-size: 70upx;
 		color: #222;
